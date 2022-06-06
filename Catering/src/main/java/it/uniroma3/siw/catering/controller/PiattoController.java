@@ -1,6 +1,5 @@
 package it.uniroma3.siw.catering.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.catering.model.Buffet;
-import it.uniroma3.siw.catering.model.Ingrediente;
 import it.uniroma3.siw.catering.model.Piatto;
 import it.uniroma3.siw.catering.service.BuffetService;
 import it.uniroma3.siw.catering.service.PiattoService;
@@ -72,11 +70,19 @@ public class PiattoController {
 		return "piatti";
 	}
 	
+	@GetMapping("/admin/dishes/dish/{id}/update")
+	public String getPiattoToUpdate(@PathVariable("id") Long id, Model model) {
+		List<Buffet> buffets = buffetService.findAll();
+		Piatto piatto = piattoService.findById(id);
+		model.addAttribute("buffets", buffets);
+		model.addAttribute("piatto", piatto);
+		return "piattoUpdate";
+	}
 	
 	
-	@PostMapping("/admin/dishes/update")
+	@PostMapping("/admin/dishes/dish/{id}/update")
 	public String updatePiatto(@Valid @ModelAttribute("piatto") Piatto piatto, BindingResult bindingResult, Model model) {
-		piattoService.aggiungiPiatto(piatto);
+		piattoService.aggiornaPiatto(piatto);
 		model.addAttribute("piatto",piatto);
 		return "adminDashboard";
 	}

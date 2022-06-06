@@ -32,6 +32,12 @@ public class PiattoService {
 		piattoRepository.save(piatto);
 	}
 	
+	@Transactional
+	public void aggiornaPiatto(Piatto piatto) {
+		piattoRepository.save(piatto);
+	}
+	
+	
 	
 	@Transactional
 	public List<Piatto> getPiatti(){

@@ -16,6 +16,7 @@
 	<description>progetto docente catering</description>
 	<properties>
 		<java.version>17</java.version>
+		<maven.version>3.6.2</maven.version>
 	</properties>
 	<dependencies>
 		<dependency>

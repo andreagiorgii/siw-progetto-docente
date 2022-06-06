@@ -20,12 +20,11 @@
 		<div class="ct-flex-container">
 			<div class="ct-flex-item">
 				<div class="section p-5">
-					<h2 class="title is-5">Piatti</h2>
+					<h2 class="title is-5">Modifica i piatti presenti</h2>
 					<p class="subtitle is-6">Scopri tutti i piatti proposti</p>
 				</div>
 				<div class="section p-5">
-					<a class="media media-chef" th:if="${!piatti.empty}" th:each="piatto : ${piatti}"
-						 >
+					<a class="media media-chef" th:href="@{'/admin/dishes/dish/' + ${piatto.id} + '/update'}" th:if="${!piatti.empty}" th:each="piatto : ${piatti}">
 						<div class="media-left">
 							<div class="media-left-badge">
 								<p th:text=" '#' + ${piatto.id}">#ID</p>

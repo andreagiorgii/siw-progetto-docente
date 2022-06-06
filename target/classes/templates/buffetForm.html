@@ -1,0 +1,134 @@
+<html>
+
+<head>
+	<title>Aggiungi buffet | Catering </title>
+	<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+	<div id="content">
+		<header>
+			<span>Buffet</span>
+		</header>
+		<!--- MAIN -->
+		<div class="ct-flex-container">
+			<div class="ct-flex-item">
+				<div class="section p-5">
+					<h2 class="title is-5">Inserisci buffet</h2>
+					<p class="subtitle is-6">Stai creando un nuovo buffet</p>
+				</div>
+				<div class="section pt-0 pb-4">
+					<form th:action="@{/admin/buffet/add}" method="POST" th:object="${buffet}">
+						<div class="field">
+							<div class="control">
+								<label class="label">Nome</label>
+								<span><input th:field="*{nome}" class="input" type="text" /></span>
+							</div>
+						</div>
+						<div class="field">
+							<div class="control">
+								<label class="label">Descrizione</label>
+								<span><textarea th:field="*{descrizione}" class="textarea"
+										placeholder="Inserisci la descrizione del buffet"></textarea></span>
+							</div>
+						</div>
+						<div class="field">
+							<div class="control">
+								<label class="label">Chef</label>
+								<div th:if="${!buffetChefs.empty}" class="select">
+									<select th:field="*{chef}">
+										<option th:value="${chef.id}" th:each="chef : ${buffetChefs}"><span
+												th:text="${chef.nome} + ' ' + ${chef.cognome}">Nome chef</span></option>
+									</select>
+								</div>
+								<div th:unless="${!buffetChefs.empty}">
+									<div class="notification p-3 is-danger">Nessuno chef disponibile!</div>
+								</div>
+							</div>
+						</div>
+						<div class="level is-mobile">
+							<div class="level-left">
+								<button class="button is-rounded is-info" th:disabled="${buffetChefs.empty}"
+									type="submit">Salva</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+			<div class="ct-flex-item">
+				<div class="section p-5">
+					<h2 class="title is-5"><span class="mr-1">🍴 </span> Buffet disponibili</h2>
+					<p class="subtitle is-6">Qui puoi vedere tutti i buffet proposti</p>
+				</div>
+				<div class="section p-5">
+					<a class="media media-chef" th:if="${!buffets.empty}" th:each="buffet : ${buffets}"
+						th:href="@{'/buffet/' + ${buffet.id} + '/dishes'}">
+						<div class="media-left">
+							<div class="media-left-badge">
+								<p th:text=" '#' + ${buffet.id}">#ID</p>
+							</div>
+						</div>
+						<div class="media-content">
+							<p class="title is-6" th:text="${buffet.nome}">Nome Cognome</p>
+							<p class="subtitle is-6" th:text="'Descrizione: ' + ${buffet.descrizione}">Descrizione
+								buffet</p>
+						</div>
+						<div class="media-right">
+							<form method="post" th:action="@{'/admin/buffet/' + ${buffet.id} + '/delete'}">
+								<button class="delete" type="submit">Elimina </button>
+							</form>
+						</div>
+					</a>
+					<div th:unless="${!buffets.empty}">
+						<div th:replace="fragments/base.html :: alert(text='Non ci sono buffet registrati')" />
+					</div>
+				</div>
+			</div>
+			<a class="ct-flex-item">
+				<div class="media p-5">
+					<div class="media-left"><span class="icon-media-left">👨🏻‍🍳</span></div>
+					<div class="media-content">
+						<h2 class="title is-5">Scopri gli altri chef</h2>
+						<p class="subtitle is-6">Puoi vedere gli chef che ci sono</p>
+					</div>
+					<div class="media-right"><button class="delete"></button></div>
+				</div>
+			</a>
+		</div>
+	</div>
+	<footer>
+		<div class="ct-footer-btn">
+			<div class="ct-btn-icon">
+				<i class="fa-solid fa-house fa-lg"></i>
+				<p>Home</p>
+			</div>
+		</div>
+		<div class="ct-footer-btn">
+			<div class="ct-btn-icon">
+				<i class="fa-solid fa-fire fa-lg"></i>
+				<p>Chef</p>
+			</div>
+		</div>
+		<div class="ct-footer-btn">
+			<div class="ct-btn-icon">
+				<i class="fa-solid fa-fire fa-lg"></i>
+				<p>Chef</p>
+			</div>
+		</div>
+		<div class="ct-footer-btn">
+			<div class="ct-btn-icon">
+				<i class="fa-solid fa-fire fa-lg"></i>
+				<p>Chef</p>
+			</div>
+		</div>
+	</footer>
+	</div>
+</body>
+
+</html>

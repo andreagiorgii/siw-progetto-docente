@@ -1,0 +1,75 @@
+<html>
+
+<head>
+	<title>Aggiungi chef | Catering </title>
+	<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+	<div id="content">
+		<header>
+			<spn>Chef</span>
+		</header>
+		<!--- MAIN -->
+		<div class="ct-flex-container">
+			<div class="ct-flex-item">
+				<div class="section p-5">
+					<h2 class="title is-5">Modifica i piatti presenti</h2>
+					<p class="subtitle is-6">Scopri tutti i piatti proposti</p>
+				</div>
+				<div class="section p-5">
+					<a class="media media-chef" th:href="@{'/admin/dishes/dish/' + ${piatto.id} + '/update'}" th:if="${!piatti.empty}" th:each="piatto : ${piatti}">
+						<div class="media-left">
+							<div class="media-left-badge">
+								<p th:text=" '#' + ${piatto.id}">#ID</p>
+							</div>
+						</div>
+						<div class="media-content">
+							<p class="title is-6" th:text="${piatto.nome}">Nome Buffet</p>
+							<p class="subtitle is-6" th:text="${piatto.descrizione}">Descrizione buffet</p>
+						</div>
+						<div class="media-right"><i class="fa-solid fa-chevron-right"></i></div>
+					</a>
+					<div th:unless="${!piatti.empty}">
+						<div th:replace="fragments/base.html :: alert(text='Non ci sono piatti disponibili')" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="ct-footer-btn">
+			<div class="ct-btn-icon">
+				<i class="fa-solid fa-house fa-lg"></i>
+				<p>Home</p>
+			</div>
+		</div>
+		<div class="ct-footer-btn">
+			<div class="ct-btn-icon">
+				<i class="fa-solid fa-fire fa-lg"></i>
+				<p>Chef</p>
+			</div>
+		</div>
+		<div class="ct-footer-btn">
+			<div class="ct-btn-icon">
+				<i class="fa-solid fa-fire fa-lg"></i>
+				<p>Chef</p>
+			</div>
+		</div>
+		<div class="ct-footer-btn">
+			<div class="ct-btn-icon">
+				<i class="fa-solid fa-fire fa-lg"></i>
+				<p>Chef</p>
+			</div>
+		</div>
+	</footer>
+	</div>
+</body>
+
+</html>

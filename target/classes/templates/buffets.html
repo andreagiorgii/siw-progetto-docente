@@ -1,0 +1,100 @@
+<html>
+
+<head>
+	<title>Buffet | Catering </title>
+	<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+	<div id="content">
+		<header th:replace="fragments/base.html :: navbar"></header>
+		<div th:replace="fragments/base.html :: page-title-section(type='is-info',title='Scopri i buffet 🤩 ',subtitle='Migliaia di piatti da assaggiare')"></div>
+		<!--- MAIN -->
+		<div class="ct-flex-container">
+			<div class="ct-flex-item">
+				<div class="section p-5">
+					<h2 class="title is-5"><span class="mr-1">🍴 </span>Buffet disponibili</h2>
+					<p class="subtitle is-6">Qui puoi vedere tutti i buffet proposti</p>
+				</div>
+				<div class="section p-5">
+					<a class="media media-chef" th:if="${!buffets.empty}" th:each="buffet : ${buffets}"
+						th:href="@{'/buffet/' + ${buffet.id} + '/dishes'}"  >
+						<div class="media-left">
+							<div class="media-left-badge">
+								<p th:text=" '#' + ${buffet.id}">#ID</p>
+							</div>
+						</div>
+						<div class="media-content">
+							<p class="title is-6" th:text="${buffet.nome}">Nome Cognome</p>
+							<p class="subtitle is-6" th:text="'Descrizione: ' + ${buffet.descrizione}">Descrizione buffet</p>
+						</div>
+						<div class="media-right"><i class="fa-solid fa-chevron-right"></i></div>
+					</a>
+						<div th:unless="${!buffets.empty}">
+						<div th:replace="fragments/base.html :: alert(text='Non ci sono buffet registrati')"/>
+						</div>
+				</div>
+			</div>
+			<div class="ct-flex-item">
+				<div class="section p-5">
+					<h2 class="title is-5"><span class="mr-2">👨🏻‍🍳</span>Chef per buffet</h2>
+					<p class="subtitle is-6">Di seguito troverai tutti gli chef, potrai scoprire i loro buffet e i loro
+						piatti.</p>
+				</div>
+				<div class="section p-5">
+					<a class="media media-chef" th:if="${!chefs.empty}" th:href="@{'/chef' + '/' + ${chef.id} + '/buffet'}"  
+						th:each="chef : ${chefs}">
+						<div class="media-left">
+							<div class="media-left-badge">
+								<p th:text=" '#' + ${chef.id}">#ID</p>
+							</div>
+						</div>
+						<div class="media-content">
+							<p class="title is-6" th:text="${chef.nome} + ' ' + ${chef.cognome}">Nome Cognome</p>
+							<p class="subtitle is-6" th:text="${chef.nazionalita}">Nazionalità</p>
+						</div>
+						<div class="media-right"><i class="fa-solid fa-chevron-right"></i></div>
+					</a>
+						<div th:unless="${!chefs.empty}">
+						<div th:replace="fragments/base.html :: alert(text='Non ci sono chef registrati')"/>
+						</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="ct-footer-btn">
+			<div class="ct-btn-icon">
+				<i class="fa-solid fa-house fa-lg"></i>
+				<p>Home</p>
+			</div>
+		</div>
+		<div class="ct-footer-btn">
+			<div class="ct-btn-icon">
+				<i class="fa-solid fa-fire fa-lg"></i>
+				<p>Chef</p>
+			</div>
+		</div>
+		<div class="ct-footer-btn">
+			<div class="ct-btn-icon">
+				<i class="fa-solid fa-fire fa-lg"></i>
+				<p>Chef</p>
+			</div>
+		</div>
+		<div class="ct-footer-btn">
+			<div class="ct-btn-icon">
+				<i class="fa-solid fa-fire fa-lg"></i>
+				<p>Chef</p>
+			</div>
+		</div>
+	</footer>
+	</div>
+</body>
+
+</html>

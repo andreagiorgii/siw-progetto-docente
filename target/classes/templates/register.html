@@ -1,0 +1,92 @@
+<html>
+
+
+<head>
+	<title>Accedi | Catering </title>
+	<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+	<div id="content">
+		<header th:replace="fragments/base.html :: navbar"></header>
+		<!--- MAIN -->
+		<div
+			th:replace="fragments/base.html :: page-title-section(type='is-info',title='Registrati ora ',subtitle='Inizia a usare Catering')">
+		</div>
+		<div class="ct-flex-container">
+			<div class="ct-flex-auth">
+				<div class="box ct-auth-box">
+					<div class="column">
+						<form th:action="@{/register}" method="POST">
+							
+							
+							<div class="container has-text-left mb-5">
+								<p class="title is-4">Ciao,<br>Registrati subito!</p>
+							</div>
+							<div class="field">
+								<div class="control has-icons-left">
+									<input class="input" type="text" th:field="${user.nome}" placeholder="Nome">
+									<span class="icon is-small is-left">
+										<i class="fas fa-user"></i>
+									</span>
+								</div>
+								<p  th:if="${#fields.hasErrors('user.nome')}" th:errors="${user.nome}">Errore</p>
+
+							</div>
+							<div class="field">
+								<div class="control has-icons-left">
+									<input class="input" type="text" th:field="${user.cognome}" placeholder="Cognome"
+										required>
+									<span class="icon is-small is-left">
+										<i class="fas fa-user"></i>
+									</span>
+								</div>
+							</div>
+							<div class="field">
+								<div class="control has-icons-left">
+									<input class="input" type="text" th:field="${credentials.username}" required
+										placeholder="Username">
+									<span class="icon is-small is-left">
+										<i class="fas fa-user"></i>
+									</span>
+								</div>
+							</div>
+							<div class="field">
+								<div class="control has-icons-left">
+									<input class="input" type="password" th:field="${credentials.password}"
+										placeholder="Password" value="bulma">
+									<span class="icon is-small is-left">
+										<i class="fas fa-lock"></i>
+									</span>
+								</div>
+							</div>
+							<div class="field">
+								<div class="control">
+									<button type="submit"
+										class="button is-info is-fullwidth is-rounded">Registrati</button>
+								</div>
+							</div>
+						</form>
+						<div class="field">
+							<div class="control">
+								<p class="title is-6 is-info">Hai già un account?<a th:href="@{/login}"> Accedi ora</a>
+								</p>
+							</div>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<footer th:replace="fragments/base.html :: footer"></footer>
+	</div>
+</body>
+
+</html>

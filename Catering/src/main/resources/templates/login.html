@@ -17,7 +17,7 @@
 		<header th:replace="fragments/base.html :: navbar"></header>
 		<!--- MAIN -->
 		<div
-			th:replace="fragments/base.html :: page-title-section(type='is-info',title='Benvenuto in Catering 👋 ',subtitle='Scopri le nostre offerte')">
+			th:replace="fragments/base.html :: page-title-section(image='/images/servizio-catering.webp',type='has-text-white',title='Accedi ora 😋',subtitle='Inizia a usare Catering')">
 		</div>
 		<div class="ct-flex-container">
 			<div class="ct-flex-auth">
@@ -38,7 +38,8 @@
 
 							<div class="field">
 								<div class="control has-icons-left">
-									<input class="input" type="password" name="password" placeholder="Password" required>
+									<input class="input" type="password" name="password" placeholder="Password"
+										required>
 									<span class="icon is-small is-left">
 										<i class="fas fa-lock"></i>
 									</span>
@@ -52,7 +53,8 @@
 						</form>
 						<div class="field">
 							<div class="control">
-								<p class="title is-6 is-info">Non sei ancora registrato?<a th:href="@{/register}"> Registrati ora</a></p>
+								<p class="title is-6 is-info">Non sei ancora registrato?<a th:href="@{/register}">
+										Registrati ora</a></p>
 							</div>
 						</div>
 					</div>

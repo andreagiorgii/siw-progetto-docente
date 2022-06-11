@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -55,10 +54,7 @@ public class BuffetController {
 		model.addAttribute("buffet", new Buffet());
 		return "buffetForm";
 	}
-	
-	
 
-	
 	/**
 	 * Ritorna tutti i buffet registrati
 	 * 
@@ -70,21 +66,19 @@ public class BuffetController {
 		List<Buffet> buffets = buffetService.findAll();
 		List<Chef> chefs = new ArrayList<Chef>();
 		for (Buffet b : buffets) {
-			chefs.add(chefService.findById(b.getChef().getId()));
+			chefs.add(chefService.findDistinctById(b.getChef().getId()));
 		}
 		model.addAttribute("chefs", chefs);
 		model.addAttribute("buffets", buffets);
 		return "buffets";
 	}
-	
-	
+
 	@PostMapping("/admin/buffet/{id}/delete")
 	public String deleteBuffet(@PathVariable("id") Long id) {
 		buffetService.deleteBuffet(id);
 		return "index";
 	}
 
-	
 	/**
 	 * Ritorna i buffet dello chef con {id}
 	 */

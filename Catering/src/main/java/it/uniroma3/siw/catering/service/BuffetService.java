@@ -14,20 +14,20 @@ import it.uniroma3.siw.catering.respository.BuffetRepository;
 
 @Service
 public class BuffetService {
-	
-	@Autowired 
+
+	@Autowired
 	private BuffetRepository buffetRepository;
-	
-	
+
 	/**
 	 * Salva il buffet creato
+	 * 
 	 * @param buffet
 	 */
 	@Transactional
-	public void aggiungiBuffet(Buffet buffet ) {
+	public void aggiungiBuffet(Buffet buffet) {
 		buffetRepository.save(buffet);
 	}
-	
+
 	/**
 	 * Ritorna lo chef con id corrispondente
 	 * 
@@ -38,28 +38,31 @@ public class BuffetService {
 	public Buffet findById(@Valid Long id) {
 		return buffetRepository.findById(id).get();
 	}
-	
+
 	/**
 	 * Trova i buffet per chef_id
+	 * 
 	 * @param id
 	 * @return
 	 */
-	public List<Buffet> findByChef(@Valid Long id){
+	public List<Buffet> findByChef(@Valid Long id) {
 		List<Buffet> chefBuffet = new ArrayList<Buffet>();
-		for(Buffet b : buffetRepository.findByChef_Id(id))
+		for (Buffet b : buffetRepository.findByChef_Id(id))
 			chefBuffet.add(b);
 		return chefBuffet;
 	}
-	
+
 	/**
 	 * Cancella il buffet in base all' {id}
+	 * 
 	 * @param id
 	 */
 	@Transactional
 	public void deleteBuffet(Long id) {
-		buffetRepository.deleteById(id);;
+		buffetRepository.deleteById(id);
+		;
 	}
-	
+
 	/**
 	 * Restituisce una lista di buffet
 	 * 

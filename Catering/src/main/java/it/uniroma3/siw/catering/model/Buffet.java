@@ -27,9 +27,9 @@ public class Buffet {
 	@Column(columnDefinition = "TEXT")
 	@NotBlank
 	private String descrizione;
-	
+
 	@OneToMany(mappedBy = "buffet", cascade = CascadeType.REMOVE)
-    private List<Piatto> dishes = new ArrayList<>();
+	private List<Piatto> dishes = new ArrayList<>();
 
 	@ManyToOne
 	@JoinColumn(name = "chef_id")

@@ -16,26 +16,25 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Piatto {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id; 
-	
+	private Long id;
+
 	@NotBlank
 	private String nome;
-	
+
 	@Column(columnDefinition = "TEXT")
-	@NotBlank 
+	@NotBlank
 	private String descrizione;
-	
-	@OneToMany(mappedBy = "piatto",cascade = CascadeType.REMOVE)
+
+	@OneToMany(mappedBy = "piatto", cascade = CascadeType.REMOVE)
 	private List<Ingrediente> ingredienti = new ArrayList<>();
-	
-	
+
 	@ManyToOne
 	@JoinColumn(name = "buffet_id")
 	private Buffet buffet;
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -59,7 +58,6 @@ public class Piatto {
 	public void setBuffet(Buffet buffet) {
 		this.buffet = buffet;
 	}
-
 
 	public List<Ingrediente> getIngredienti() {
 		return ingredienti;

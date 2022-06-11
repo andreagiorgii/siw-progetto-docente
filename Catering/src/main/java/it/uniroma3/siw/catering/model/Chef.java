@@ -2,7 +2,6 @@ package it.uniroma3.siw.catering.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -13,23 +12,22 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Chef {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id; 
-	
+	private Long id;
+
 	@NotBlank
 	private String nome;
-	
+
 	@NotBlank
 	private String cognome;
-	
+
 	@NotBlank
 	private String nazionalita;
-	
-    @OneToMany(mappedBy = "chef")
-    private List<Buffet> buffets = new ArrayList<>();
-    
+
+	@OneToMany(mappedBy = "chef")
+	private List<Buffet> buffets = new ArrayList<>();
 
 	public Long getId() {
 		return id;
@@ -71,5 +69,4 @@ public class Chef {
 		this.buffets = buffets;
 	}
 
-	
 }

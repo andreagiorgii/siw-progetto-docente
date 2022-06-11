@@ -14,8 +14,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import it.uniroma3.siw.catering.model.Buffet;
+import it.uniroma3.siw.catering.model.Chef;
 import it.uniroma3.siw.catering.model.Piatto;
 import it.uniroma3.siw.catering.service.BuffetService;
+import it.uniroma3.siw.catering.service.ChefService;
 import it.uniroma3.siw.catering.service.PiattoService;
 
 @Controller
@@ -26,6 +28,9 @@ public class PiattoController {
 
 	@Autowired
 	private BuffetService buffetService;
+	
+	@Autowired
+	private ChefService chefService;
 
 	/* Ritorna il buffet associato e dispone nuova creazione piatto */
 	@GetMapping("/admin/buffet/dish/add")
@@ -42,7 +47,7 @@ public class PiattoController {
 	@GetMapping("/chef/{id_chef}/buffet/{id_buffet}/dishes")
 	public String getPiatti(@PathVariable("id_buffet") Long id_buffet, @PathVariable("id_chef") Long id_chef,
 			Model model) {
-		Buffet buffet = buffetService.findById(id_chef);
+		Buffet buffet = buffetService.findById(id_buffet);
 		List<Piatto> buffetDishes = piattoService.getPiattoByBuffetId(id_buffet);
 		model.addAttribute("buffet", buffet);
 		model.addAttribute("buffetDishes", buffetDishes);
@@ -52,16 +57,19 @@ public class PiattoController {
 	/**
 	 * Ritorna i piatti del buffet con {id}
 	 */
+	
 	@GetMapping("/buffet/{id_buffet}/dishes")
 	public String getPiatti(@PathVariable("id_buffet") Long id_buffet, Model model) {
 		Buffet buffet = buffetService.findById(id_buffet);
 		List<Piatto> buffetDishes = piattoService.getPiattoByBuffetId(id_buffet);
+		Chef chef = chefService.findById(buffet.getChef().getId());
+		model.addAttribute("chef", chef);
 		model.addAttribute("buffet", buffet);
 		model.addAttribute("buffetDishes", buffetDishes);
 		return "buffetDish";
 	}
 	
-	
+
 	@GetMapping("/admin/dishes/update")
 	public String getPiattiUpdate(Model model) {
 		List<Piatto> piatti = piattoService.getPiatti();
@@ -69,7 +77,7 @@ public class PiattoController {
 		model.addAttribute("piatto", new Piatto());
 		return "piatti";
 	}
-	
+
 	@GetMapping("/admin/dishes/dish/{id}/update")
 	public String getPiattoToUpdate(@PathVariable("id") Long id, Model model) {
 		List<Buffet> buffets = buffetService.findAll();
@@ -78,12 +86,12 @@ public class PiattoController {
 		model.addAttribute("piatto", piatto);
 		return "piattoUpdate";
 	}
-	
-	
+
 	@PostMapping("/admin/dishes/dish/{id}/update")
-	public String updatePiatto(@Valid @ModelAttribute("piatto") Piatto piatto, BindingResult bindingResult, Model model) {
+	public String updatePiatto(@Valid @ModelAttribute("piatto") Piatto piatto, BindingResult bindingResult,
+			Model model) {
 		piattoService.aggiornaPiatto(piatto);
-		model.addAttribute("piatto",piatto);
+		model.addAttribute("piatto", piatto);
 		return "adminDashboard";
 	}
 

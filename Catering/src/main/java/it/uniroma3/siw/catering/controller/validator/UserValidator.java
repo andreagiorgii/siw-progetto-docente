@@ -22,14 +22,14 @@ public class UserValidator implements Validator {
         String cognome = user.getCognome().trim();
 
         if (nome.isEmpty())
-        	errors.reject("nome.required");
+            errors.rejectValue("nome", "required");
         else if (nome.length() < MIN_NAME_LENGTH || nome.length() > MAX_NAME_LENGTH)
-        	errors.reject("nome.size");
+            errors.rejectValue("nome", "size");
 
         if (cognome.isEmpty())
-        	errors.reject("cognome.required");
+            errors.rejectValue("cognome", "required");
         else if (cognome.length() < MIN_NAME_LENGTH || cognome.length() > MAX_NAME_LENGTH)
-            errors.reject("cognome.size");
+            errors.rejectValue("cognome", "size");
     }
 
     @Override

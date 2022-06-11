@@ -2,7 +2,6 @@ package it.uniroma3.siw.catering.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import javax.validation.Valid;
 
@@ -37,6 +36,11 @@ public class ChefService {
 	 */
 	public Chef findById(@Valid Long id) {
 		return this.chefRepository.findById(id).get();
+	}
+	
+	@Transactional
+	public Chef findDistinctById(@Valid Long id){
+		return chefRepository.findDistinctById(id);
 	}
 
 	/**

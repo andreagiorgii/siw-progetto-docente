@@ -1,7 +1,6 @@
 package it.uniroma3.siw.catering.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -10,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import it.uniroma3.siw.catering.model.Ingrediente;
 import it.uniroma3.siw.catering.model.Piatto;
 import it.uniroma3.siw.catering.respository.PiattoRepository;
 
@@ -19,8 +17,6 @@ public class PiattoService {
 
 	@Autowired
 	private PiattoRepository piattoRepository;
-	
-	
 
 	/**
 	 * Aggiungi un nuovo piatto
@@ -31,18 +27,16 @@ public class PiattoService {
 	public void aggiungiPiatto(Piatto piatto) {
 		piattoRepository.save(piatto);
 	}
-	
+
 	@Transactional
 	public void aggiornaPiatto(Piatto piatto) {
 		piattoRepository.save(piatto);
 	}
-	
-	
-	
+
 	@Transactional
-	public List<Piatto> getPiatti(){
+	public List<Piatto> getPiatti() {
 		List<Piatto> piatti = new ArrayList<Piatto>();
-		for(Piatto p : piattoRepository.findAll()) {
+		for (Piatto p : piattoRepository.findAll()) {
 			piatti.add(p);
 		}
 		return piatti;
@@ -57,6 +51,7 @@ public class PiattoService {
 	public Piatto findById(@Valid Long id) {
 		return piattoRepository.findById(id).get();
 	}
+	
 
 	/**
 	 * Ritorna lista dei piatti in base {buffet_id}
@@ -66,7 +61,7 @@ public class PiattoService {
 	 */
 	public List<Piatto> getPiattoByBuffetId(@Valid Long id) {
 		List<Piatto> piattiBuffet = new ArrayList<Piatto>();
-		
+
 		for (Piatto p : piattoRepository.findByBuffet_Id(id)) {
 			piattiBuffet.add(p);
 		}

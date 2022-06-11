@@ -17,7 +17,7 @@
 		<header th:replace="fragments/base.html :: navbar"></header>
 		<!--- MAIN -->
 		<div
-			th:replace="fragments/base.html :: page-title-section(type='is-info',title='Registrati ora ',subtitle='Inizia a usare Catering')">
+			th:replace="fragments/base.html :: page-title-section(image='/images/servizio-catering.webp',type='has-text-white',title='Registrati ora 👋',subtitle='Inizia a usare Catering')">
 		</div>
 		<div class="ct-flex-container">
 			<div class="ct-flex-auth">
@@ -31,22 +31,22 @@
 							</div>
 							<div class="field">
 								<div class="control has-icons-left">
-									<input class="input" type="text" th:field="${user.nome}" placeholder="Nome">
+									<input class="input" type="text" th:field="${user.nome}" placeholder="Nome" >
 									<span class="icon is-small is-left">
 										<i class="fas fa-user"></i>
 									</span>
 								</div>
-								<p  th:if="${#fields.hasErrors('user.nome')}" th:errors="${user.nome}">Errore</p>
+								<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('user.nome')}" th:errors="${user.nome}">Errore</p>
 
 							</div>
 							<div class="field">
 								<div class="control has-icons-left">
-									<input class="input" type="text" th:field="${user.cognome}" placeholder="Cognome"
-										required>
+									<input class="input" type="text" th:field="${user.cognome}" placeholder="Cognome">
 									<span class="icon is-small is-left">
 										<i class="fas fa-user"></i>
 									</span>
 								</div>
+								<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('user.cognome')}" th:errors="${user.cognome}">Errore</p>
 							</div>
 							<div class="field">
 								<div class="control has-icons-left">
@@ -56,15 +56,17 @@
 										<i class="fas fa-user"></i>
 									</span>
 								</div>
+								<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}">Errore</p>
 							</div>
 							<div class="field">
 								<div class="control has-icons-left">
 									<input class="input" type="password" th:field="${credentials.password}"
-										placeholder="Password" value="bulma">
+										placeholder="Password" required>
 									<span class="icon is-small is-left">
 										<i class="fas fa-lock"></i>
 									</span>
 								</div>
+								<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}">Errore</p>
 							</div>
 							<div class="field">
 								<div class="control">

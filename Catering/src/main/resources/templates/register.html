@@ -31,12 +31,12 @@
 							</div>
 							<div class="field">
 								<div class="control has-icons-left">
-									<input class="input" type="text" th:field="${user.nome}" placeholder="Nome">
+									<input class="input" type="text" th:field="${user.nome}" placeholder="Nome" required>
 									<span class="icon is-small is-left">
 										<i class="fas fa-user"></i>
 									</span>
 								</div>
-								<p  th:if="${#fields.hasErrors('user.nome')}" th:errors="${user.nome}">Errore</p>
+								<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('user.nome')}" th:errors="${user.nome}">Errore</p>
 
 							</div>
 							<div class="field">

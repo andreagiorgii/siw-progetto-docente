@@ -1,0 +1,47 @@
+<html>
+
+
+<head th:replace="fragments/base.html :: headerfiles(title='Home | Catering')">
+	<title>Aggiungi chef | Catering </title>
+</head>
+
+<body>
+	<div id="content">
+		<header th:replace="fragments/base.html :: navbar"></header>
+		<!--- MAIN -->
+		<div
+			th:replace="fragments/base.html :: page-title-section(image='servizio-catering.webp',type='is-info',title='Benvenuto in Catering 👋 ',subtitle='Scopri le nostre offerte')">
+		</div>
+		<div class="ct-flex-container">
+			<div class="ct-flex-item">
+				<a th:href="@{/buffet}" class="media p-5">
+					<div class="media-left">
+						<p class="title is-3">🍴 </p>
+					</div>
+					<div class="media-content">
+						<p class="title is-5">Scopri Buffet</p>
+					</div>
+					<div class="media-left">
+						<i class="fa-solid fa-chevron-right"></i>
+					</div>
+				</a>
+			</div>
+			<div class="ct-flex-item">
+				<a th:href="@{/chef}" class="media p-5">
+					<div class="media-left">
+						<p class="title is-3">👨🏻‍🍳 </p>
+					</div>
+					
+					<div class="media-content">
+						<p class="title is-5">Scopri Chef</p>
+					</div>
+					<div class="media-left"><i class="fa-solid fa-chevron-right"></i></div>
+				</a>
+			</div>
+		</div>
+
+		<footer th:replace="fragments/base.html :: footer"></footer>
+	</div>
+</body>
+
+</html>

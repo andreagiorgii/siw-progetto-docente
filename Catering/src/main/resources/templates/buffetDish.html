@@ -1,0 +1,53 @@
+<html>
+
+<head>
+	<title>Buffet | Catering </title>
+	<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+	<div id="content">
+		<header th:replace="fragments/base.html :: navbar"></header>
+		<div
+			th:replace="fragments/base.html :: page-title-section(type='is-info',title='Scopri i buffet 😋 ',subtitle='Migliaia di piatti da assaggiare')">
+		</div>
+		<!--- MAIN -->
+		<div class="ct-flex-container">
+			<div class="ct-flex-item">
+				<div class="section p-5">
+				<p class="title is-5 mb-0" th:text="Buffet + ' ' + ${buffet.nome}"></p>
+				<p class="title is-6" th:text="Chef + ' ' + ${chef.nome} + ' ' + ${chef.cognome}"></p>
+				<p class="subtitle is-6">Scopri tutti i piatti proposti nel menu</p>
+				</div>
+				<div class="section p-5">
+					<a class="media media-chef" th:if="${!buffetDishes.empty}" th:each="dish : ${buffetDishes}"
+						th:href="@{'/buffet' + '/' + ${buffet.id} + '/dish/' + ${dish.id} + '/ingredienti'}"  >
+						<div class="media-left">
+							<div class="media-left-badge">
+								<p th:text=" '#' + ${dish.id}">#ID</p>
+							</div>
+						</div>
+						<div class="media-content">
+							<p class="title is-6" th:text="${dish.nome}">Nome Buffet</p>
+							<p class="subtitle is-6" th:text="${dish.descrizione}">Descrizione buffet</p>
+						</div>
+						<div class="media-right"><i class="fa-solid fa-chevron-right"></i></div>
+					</a>
+					<div th:unless="${!buffetDishes.empty}">
+						<div th:replace="fragments/base.html :: alert(text='Non ci sono piatti disponibili')" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	</div>
+</body>
+
+</html>

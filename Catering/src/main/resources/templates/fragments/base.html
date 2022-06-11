@@ -17,11 +17,9 @@
 	<header th:fragment="navbar">
 		<nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
 			<div class="navbar-menu level is-mobile">
-				<div class="navbar-brand">
-					<a class="navbar-item" href="https://bulma.io">
-						<img src="https://bulma.io/images/bulma-logo.png"
-							alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28">
-					</a>
+				<div class="navbar-brand p-1 ml-4">
+						<img src="/images/logo.png"
+							alt="Bulma: a modern CSS framework based on Flexbox" height="200"  width="65">
 				</div>
 				<div class="navbar-end">
 					<a class="navbar-item is-hidden-mobile" th:href="@{/buffet}">
@@ -38,15 +36,17 @@
 		</nav>
 	</header>
 
-	<div th:fragment="page-title-section(type,title,subtitle)">
-		<section th:classappend="${type}" class="hero is-medium">
-			<div class="hero-body">
-				<p class="title" th:text="${title}">
-					Benvenuto in Catering
-				</p>
-				<p class="subtitle" th:text="${subtitle}">
-					Scopri le offerte disponibili
-				</p>
+	<div th:fragment="page-title-section(image,type,title,subtitle)">
+		<section class="hero is-medium" th:style="' background-image:url(' + @{ ${image}} + ')'">
+			<div class="hero-overlay">
+				<div class="hero-body">
+					<p th:class="'title ' + ${type}" th:text="${title}">
+						Benvenuto in Catering
+					</p>
+					<p th:class="'subtitle ' + ${type}" th:text="${subtitle}">
+						Scopri le offerte disponibili
+					</p>
+				</div>
 			</div>
 		</section>
 	</div>

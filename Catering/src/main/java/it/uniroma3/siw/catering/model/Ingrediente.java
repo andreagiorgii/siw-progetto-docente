@@ -10,20 +10,20 @@ import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Ingrediente {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Long id; 
-	
+	private Long id;
+
 	@NotBlank
 	private String nome;
-	
+
 	@NotBlank
 	private String origine;
-	
+
 	@NotBlank
 	private String descrizione;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "piatto_id")
 	private Piatto piatto;

@@ -3,8 +3,14 @@
 
 <head th:fragment="headerfiles(title)">
 	<meta charset="UTF-8" />
-	<link th:href="@{/css/my-style.css}" rel="stylesheet">
 	<title th:text="${title}"></title>
+	<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -18,14 +24,10 @@
 					</a>
 				</div>
 				<div class="navbar-end">
-					<a class="navbar-item is-hidden-mobile" href="https://bulma.io/">
+					<a class="navbar-item is-hidden-mobile" th:href="@{/buffet}">
 						Buffet
 					</a>
-
-					<a class="navbar-item is-hidden-mobile" href="https://bulma.io/">
-						Piatti
-					</a>
-					<a class="navbar-item is-hidden-mobile" href="https://bulma.io/">
+					<a class="navbar-item is-hidden-mobile" th:href="@{/chef}">
 						Chef
 					</a>
 					<a class="button is-rounded is-info" th:href="@{/login}" href="https://bulma.io/">
@@ -51,8 +53,6 @@
 
 	<div th:fragment="alert(text)" class="notification is-danger" th:text="${text}">Non ci
 		sono buffet disponibili.</div>
-
-
 
 	<footer th:fragment="footer" class="footer">
 		<div class="content has-text-centered">

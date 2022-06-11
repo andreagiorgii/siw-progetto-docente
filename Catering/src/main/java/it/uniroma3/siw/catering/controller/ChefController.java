@@ -22,7 +22,7 @@ public class ChefController {
 	@Autowired
 	private ChefService chefService;
 
-	// Aggiunge un nuovo chef dalla form 
+	// Aggiunge un nuovo chef dalla form
 	@PostMapping("admin/chef/add")
 	public String addChef(@Valid @ModelAttribute("chef") Chef chef, BindingResult bindingResult, Model model) {
 		if (!bindingResult.hasErrors()) {
@@ -39,7 +39,7 @@ public class ChefController {
 		model.addAttribute("chef", new Chef());
 		return "chefForm";
 	}
-	
+
 	// Visualizza pagina con lista di chef
 	@GetMapping("/chef")
 	public String getChefs(Model model) {
@@ -47,7 +47,7 @@ public class ChefController {
 		model.addAttribute("chefs", chefs);
 		return "chefs";
 	}
-	
+
 	// Visualizza pagina con singolo chef
 	@GetMapping("/chef/{id}")
 	public String getChefDetail(@PathVariable("id") Long id, Model model) {

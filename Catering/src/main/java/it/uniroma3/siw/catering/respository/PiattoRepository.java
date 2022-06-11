@@ -7,8 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 import it.uniroma3.siw.catering.model.Piatto;
 
 public interface PiattoRepository extends CrudRepository<Piatto, Long> {
-	
-	 List<Piatto> findByBuffet_Id(Long id);
-	 
-	 List<Piatto> findAllByBuffet_Id(Long id);
+
+	List<Piatto> findByBuffet_Id(Long id);
 }

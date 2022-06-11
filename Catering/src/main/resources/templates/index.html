@@ -1,25 +1,20 @@
 <html>
 
 
-<head>
+<head th:replace="fragments/base.html :: headerfiles(title='Home | Catering')">
 	<title>Aggiungi chef | Catering </title>
-	<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
 	<div id="content">
 		<header th:replace="fragments/base.html :: navbar"></header>
 		<!--- MAIN -->
-		<div th:replace="fragments/base.html :: page-title-section(type='is-info',title='Benvenuto in Catering 👋 ',subtitle='Scopri le nostre offerte')"></div>
+		<div
+			th:replace="fragments/base.html :: page-title-section(image='servizio-catering.webp',type='is-info',title='Benvenuto in Catering 👋 ',subtitle='Scopri le nostre offerte')">
+		</div>
 		<div class="ct-flex-container">
 			<div class="ct-flex-item">
-				<a th:href="@{/buffets}"  class="media p-5">
+				<a th:href="@{/buffet}" class="media p-5">
 					<div class="media-left">
 						<p class="title is-3">🍴 </p>
 					</div>
@@ -27,12 +22,12 @@
 						<p class="title is-5">Scopri Buffet</p>
 					</div>
 					<div class="media-left">
-					<i class="fa-solid fa-chevron-right"></i>
+						<i class="fa-solid fa-chevron-right"></i>
 					</div>
 				</a>
 			</div>
 			<div class="ct-flex-item">
-				<a th:href="@{/chefs}" class="media p-5">
+				<a th:href="@{/chef}" class="media p-5">
 					<div class="media-left">
 						<p class="title is-3">👨🏻‍🍳 </p>
 					</div>
@@ -42,47 +37,8 @@
 					<div class="media-left"><i class="fa-solid fa-chevron-right"></i></div>
 				</a>
 			</div>
-			<div class="ct-flex-item">
-				<a th:href="@{/buffetForm}" class="media p-5">
-					<div class="media-left">
-						<p class="title is-3">🍽 </p>
-					</div>
-					<div class="media-content">
-						<p class="title is-5">Aggiungi Buffet</p>
-					</div>
-					<div class="media-left">
-					<i class="fa-solid fa-chevron-right"></i>
-					</div>
-				</a>
-			</div>
-			<div class="ct-flex-item">
-				<a th:href="@{/chefForm}" class="media p-5">
-					<div class="media-left">
-						<p class="title is-3">👨🏽‍🍳 </p>
-					</div>
-					<div class="media-content">
-						<p class="title is-5">Aggiungi Chef</p>
-					</div>
-					<div class="media-left">
-					<i class="fa-solid fa-chevron-right"></i>
-					</div>
-				</a>
-			</div>
-			<div class="ct-flex-item">
-				<a th:href="@{/ingredienteForm}" class="media p-5">
-					<div class="media-left">
-						<p class="title is-3">👨🏽‍🍳 </p>
-					</div>
-					<div class="media-content">
-						<p class="title is-5">Aggiungi Chef</p>
-					</div>
-					<div class="media-left">
-					<i class="fa-solid fa-chevron-right"></i>
-					</div>
-				</a>
-			</div>
 		</div>
-		
+
 		<footer th:replace="fragments/base.html :: footer"></footer>
 	</div>
 </body>

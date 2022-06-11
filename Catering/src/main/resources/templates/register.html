@@ -41,12 +41,12 @@
 							</div>
 							<div class="field">
 								<div class="control has-icons-left">
-									<input class="input" type="text" th:field="${user.cognome}" placeholder="Cognome"
-										required>
+									<input class="input" type="text" th:field="${user.cognome}" placeholder="Cognome">
 									<span class="icon is-small is-left">
 										<i class="fas fa-user"></i>
 									</span>
 								</div>
+								<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('user.cognome')}" th:errors="${user.cognome}">Errore</p>
 							</div>
 							<div class="field">
 								<div class="control has-icons-left">
@@ -56,15 +56,17 @@
 										<i class="fas fa-user"></i>
 									</span>
 								</div>
+								<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}">Errore</p>
 							</div>
 							<div class="field">
 								<div class="control has-icons-left">
 									<input class="input" type="password" th:field="${credentials.password}"
-										placeholder="Password" value="bulma">
+										placeholder="Password" required>
 									<span class="icon is-small is-left">
 										<i class="fas fa-lock"></i>
 									</span>
 								</div>
+								<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}">Errore</p>
 							</div>
 							<div class="field">
 								<div class="control">

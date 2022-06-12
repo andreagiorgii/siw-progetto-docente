@@ -15,9 +15,9 @@
 		<div class="ct-flex-container">
 			<div class="ct-flex-item">
 				<div class="section p-5">
-				<p class="title is-5 mb-0" th:text="Buffet + ' ' + ${buffet.nome}"></p>
-				<p class="title is-6" th:text="Chef + ' ' + ${chef.nome} + ' ' + ${chef.cognome}"></p>
-				<p class="subtitle is-6">Scopri tutti i piatti proposti nel menu</p>
+					<p class="title is-5 mb-0" th:text="Buffet + ' ' + ${buffet.nome}"></p>
+					<p class="title is-6" th:text="Chef + ' ' + ${chef.nome} + ' ' + ${chef.cognome}"></p>
+					<p class="subtitle is-6">Scopri tutti i piatti proposti nel menu</p>
 				</div>
 				<div class="section p-5">
 					<a class="media media-chef" th:if="${!buffetDishes.empty}" th:each="dish : ${buffetDishes}"
@@ -39,8 +39,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-
+		<footer th:replace="fragments/base.html :: footer"></footer>
 	</div>
 </body>
 

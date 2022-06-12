@@ -9,14 +9,13 @@
 		<header th:replace="fragments/base.html :: navbar"></header>
 		<!--- MAIN -->
 		<div
-			th:replace="fragments/base.html :: page-title-section(image='/images/chefs.webp',type='has-text-white',title='Buffet ' + ${buffet.nome},subtitle=${buffet.descrizione})">
+			th:replace="fragments/base.html :: page-title-section(image='/images/chefs.webp',type='has-text-white',title= 'Buffet di ' + ${chef.nome} + ' ' + ${chef.cognome},subtitle=${chef.nazionalita})">
 		</div>
 		<!--- MAIN -->
 		<div class="ct-flex-container">
 			<div class="ct-flex-item">
 				<div class="section p-5">
-					<h2 class="title is-5" th:text="${'Chef ' + chef.nome  + ' ' + chef.cognome}">Nome chef</h2>
-					<p class="subtitle is-6 mb-0" th:text="${ 'Nazionalità ' + chef.nazionalita}">Nazionalita</p>
+					<h2 class="title is-5">I buffet</h2>
 					<p class="subtitle is-6">Scopri tutti i buffet proposti</p>
 				</div>
 				<div class="section p-5">

@@ -28,38 +28,14 @@
 						</div>
 						<div class="media-content">
 							<p class="title is-6" th:text="${buffet.nome}">Nome Cognome</p>
-							<p class="subtitle is-6" th:text="'Descrizione: ' + ${buffet.descrizione}">Descrizione buffet</p>
+							<p class="subtitle is-6" th:text="'Descrizione: ' + ${buffet.descrizione}">Descrizione
+								buffet</p>
 						</div>
 						<div class="media-right"><i class="fa-solid fa-chevron-right"></i></div>
 					</a>
-						<div th:unless="${!buffets.empty}">
-						<div th:replace="fragments/base.html :: alert(text='Non ci sono buffet registrati')"/>
-						</div>
-				</div>
-			</div>
-			<div class="ct-flex-item">
-				<div class="section p-5">
-					<h2 class="title is-5"><span class="mr-2">👨🏻‍🍳</span>Chef per buffet</h2>
-					<p class="subtitle is-6">Di seguito troverai tutti gli chef, potrai scoprire i loro buffet e i loro
-						piatti.</p>
-				</div>
-				<div class="section p-5">
-					<a class="media media-chef" th:if="${!chefs.empty}" th:href="@{'/chef' + '/' + ${chef.id} + '/buffet'}"  
-						th:each="chef : ${chefs}">
-						<div class="media-left">
-							<div class="media-left-badge">
-								<p th:text=" '#' + ${chef.id}">#ID</p>
-							</div>
-						</div>
-						<div class="media-content">
-							<p class="title is-6" th:text="${chef.nome} + ' ' + ${chef.cognome}">Nome Cognome</p>
-							<p class="subtitle is-6" th:text="${chef.nazionalita}">Nazionalità</p>
-						</div>
-						<div class="media-right"><i class="fa-solid fa-chevron-right"></i></div>
-					</a>
-						<div th:unless="${!chefs.empty}">
-						<div th:replace="fragments/base.html :: alert(text='Non ci sono chef registrati')"/>
-						</div>
+					<div th:unless="${!buffets.empty}">
+						<div th:replace="fragments/base.html :: alert(text='Non ci sono buffet registrati')" />
+					</div>
 				</div>
 			</div>
 		</div>

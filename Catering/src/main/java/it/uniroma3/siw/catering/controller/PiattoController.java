@@ -47,8 +47,10 @@ public class PiattoController {
 	@GetMapping("/chef/{id_chef}/buffet/{id_buffet}/dishes")
 	public String getPiatti(@PathVariable("id_buffet") Long id_buffet, @PathVariable("id_chef") Long id_chef,
 			Model model) {
+		Chef chef = chefService.findById(id_chef);
 		Buffet buffet = buffetService.findById(id_buffet);
 		List<Piatto> buffetDishes = piattoService.getPiattoByBuffetId(id_buffet);
+		model.addAttribute("chef", chef);
 		model.addAttribute("buffet", buffet);
 		model.addAttribute("buffetDishes", buffetDishes);
 		return "buffetDish";

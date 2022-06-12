@@ -1,21 +1,15 @@
 <html>
 
-<head>
+<head th:replace="fragments/base.html :: headerfiles(title='Piatti | Catering')">
 	<title>Buffet | Catering </title>
-	<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
 	<div id="content">
 		<header th:replace="fragments/base.html :: navbar"></header>
+		<!--- MAIN -->
 		<div
-			th:replace="fragments/base.html :: page-title-section(type='is-info',title='Scopri i buffet 😋 ',subtitle='Migliaia di piatti da assaggiare')">
+			th:replace="fragments/base.html :: page-title-section(image='/images/chefs.webp',type='has-text-white',title='Buffet ' + ${buffet.nome},subtitle=${buffet.descrizione})">
 		</div>
 		<!--- MAIN -->
 		<div class="ct-flex-container">

@@ -37,7 +37,7 @@
 	</header>
 
 	<div th:fragment="page-title-section(image,type,title,subtitle)">
-		<section class="hero is-medium" th:style="' background-image:url(' + @{ ${image}} + ')'">
+		<section class="hero is-medium" th:style="'background-image: url('+ ${image} +');background-size:cover;background-position:top'">
 			<div class="hero-overlay">
 				<div class="hero-body">
 					<p th:class="'title ' + ${type}" th:text="${title}">

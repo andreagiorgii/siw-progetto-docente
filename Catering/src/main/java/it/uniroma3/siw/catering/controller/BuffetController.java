@@ -33,9 +33,9 @@ public class BuffetController {
 		if (!bindingResult.hasErrors()) {
 			buffetService.aggiungiBuffet(buffet);
 			model.addAttribute(buffet);
-			return "index.html";
+			return "adminDashboard";
 		}
-		return "buffetForm.html";
+		return "buffetForm";
 	}
 
 	/**
@@ -76,7 +76,7 @@ public class BuffetController {
 	@PostMapping("/admin/buffet/{id}/delete")
 	public String deleteBuffet(@PathVariable("id") Long id) {
 		buffetService.deleteBuffet(id);
-		return "index";
+		return "adminDashboard";
 	}
 
 	/**

@@ -18,10 +18,13 @@
 		<nav class="navbar is-spaced" role="navigation" aria-label="main navigation">
 			<div class="navbar-menu level is-mobile">
 				<div class="navbar-brand p-1 ml-4">
-						<img src="/images/logo.png"
-							alt="Bulma: a modern CSS framework based on Flexbox" height="200"  width="65">
+					<img src="/images/logo.png" height="200"
+						width="65" />
 				</div>
 				<div class="navbar-end">
+				<a class="navbar-item is-hidden-mobile" th:href="@{/dashboard}">
+						Home
+					</a>
 					<a class="navbar-item is-hidden-mobile" th:href="@{/buffet}">
 						Buffet
 					</a>
@@ -37,7 +40,8 @@
 	</header>
 
 	<div th:fragment="page-title-section(image,type,title,subtitle)">
-		<section class="hero is-medium" th:style="'background-image: url('+ ${image} +');background-size:cover;background-position:top'">
+		<section class="hero is-medium"
+			th:style="'background-image: url('+ ${image} +');background-size:cover;background-position:top'">
 			<div class="hero-overlay">
 				<div class="hero-body">
 					<p th:class="'title ' + ${type}" th:text="${title}">

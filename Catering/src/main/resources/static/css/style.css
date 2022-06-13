@@ -105,11 +105,17 @@ a{
 	align-items: center !important;
 }
 
+.media + .media{
+	border-top: 3px  solid  #3e8ed0  !important;
+}
+
 .media-chef{
 	margin-top:10px !important;
 	padding:20px;
-	background:#80cad1;
+	background:hsl(206, 70%, 96%);
+	border: 3px solid #3e8ed0;
 	border-radius: 15px;
+	color: gray;
 }
 
 .media-left-badge{

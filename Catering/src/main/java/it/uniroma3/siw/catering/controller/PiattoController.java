@@ -28,7 +28,7 @@ public class PiattoController {
 
 	@Autowired
 	private BuffetService buffetService;
-	
+
 	@Autowired
 	private ChefService chefService;
 
@@ -59,7 +59,7 @@ public class PiattoController {
 	/**
 	 * Ritorna i piatti del buffet con {id}
 	 */
-	
+
 	@GetMapping("/buffet/{id_buffet}/dishes")
 	public String getPiatti(@PathVariable("id_buffet") Long id_buffet, Model model) {
 		Buffet buffet = buffetService.findById(id_buffet);
@@ -70,7 +70,6 @@ public class PiattoController {
 		model.addAttribute("buffetDishes", buffetDishes);
 		return "buffetDish";
 	}
-	
 
 	@GetMapping("/admin/dishes/update")
 	public String getPiattiUpdate(Model model) {
@@ -89,7 +88,7 @@ public class PiattoController {
 		return "piattoUpdate";
 	}
 
-	@PostMapping("/admin/dishes/dish/{id}/update")
+	@PostMapping("/admin/buffet/dish/{id}/update")
 	public String updatePiatto(@Valid @ModelAttribute("piatto") Piatto piatto, BindingResult bindingResult,
 			Model model) {
 		piattoService.aggiornaPiatto(piatto);
@@ -109,7 +108,7 @@ public class PiattoController {
 	public String addPiatto(@Valid @ModelAttribute("piatto") Piatto piatto, BindingResult bindingResult, Model model) {
 		piattoService.aggiungiPiatto(piatto);
 		model.addAttribute("piatto", piatto);
-		return "index.html";
+		return "adminDashboard";
 	}
 
 }

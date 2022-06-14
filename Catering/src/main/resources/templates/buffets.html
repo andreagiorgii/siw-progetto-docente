@@ -18,7 +18,7 @@
 					<h2 class="title is-5"><span class="mr-1">🍴 </span>Buffet disponibili</h2>
 					<p class="subtitle is-6">Qui puoi vedere tutti i buffet proposti</p>
 				</div>
-				<div class="section p-5">
+				<div class="section pt-0 pb-5 pl-5 pr-5">
 					<a class="media media-chef" th:if="${!buffets.empty}" th:each="buffet : ${buffets}"
 						th:href="@{'/buffet/' + ${buffet.id} + '/dishes'}"  >
 						<div class="media-left">
@@ -28,7 +28,7 @@
 						</div>
 						<div class="media-content">
 							<p class="title is-6" th:text="${buffet.nome}">Nome Cognome</p>
-							<p class="subtitle is-6" th:text="'Descrizione: ' + ${buffet.descrizione}">Descrizione
+							<p class="subtitle is-6" th:text="'Descrizione - ' + ${buffet.descrizione}">Descrizione
 								buffet</p>
 						</div>
 						<div class="media-right"><i class="fa-solid fa-chevron-right"></i></div>

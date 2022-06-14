@@ -1,27 +1,21 @@
 <html>
 
-<head>
-	<title>Aggiungi buffet | Catering </title>
-	<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head th:replace="fragments/base.html :: headerfiles(title='Aggiungi Piatto | Catering')">
+	<title>Aggiungi | Catering </title>
 </head>
 
 <body>
 	<div id="content">
-		<header>
-			<span>Buffet</span>
-		</header>
+		<header th:replace="fragments/base.html :: navbar"></header>
 		<!--- MAIN -->
+		<div
+			th:replace="fragments/base.html :: page-title-section(image='/images/ingredienti.webp',type='has-text-white',title='Aggiungi un ingrediente',subtitle='Per i tuoi piatti')">
+		</div>
 		<div class="ct-flex-container">
 			<div class="ct-flex-item">
 				<div class="section p-5">
-					<h2 class="title is-5">Inserisci ingrediente</h2>
-					<p class="subtitle is-6">Stai creando un nuovo buffet</p>
+					<h2 class="title is-5">Dettagli ingrediente</h2>
+					<p class="subtitle is-6">Stai creando un nuovo ingrediente</p>
 				</div>
 				<div class="section pt-0 pb-4">
 					<form th:action="@{/admin/buffet/dish/ingrediente/add}" method="POST" th:object="${ingrediente}">

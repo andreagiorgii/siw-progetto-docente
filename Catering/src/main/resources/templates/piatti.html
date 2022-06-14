@@ -1,7 +1,7 @@
 <html>
 
-<head th:replace="fragments/base.html :: headerfiles(title='Piatti | Catering')">
-	<title>Piatti | Catering </title>
+<head th:replace="fragments/base.html :: headerfiles(title='Aggiungi Piatto | Catering')">
+	<title>Aggiungi | Catering </title>
 </head>
 
 <body>
@@ -9,17 +9,17 @@
 		<header th:replace="fragments/base.html :: navbar"></header>
 		<!--- MAIN -->
 		<div
-			th:replace="fragments/base.html :: page-title-section(image='/images/ingredienti.webp',type='has-text-white',title='I Piatti 🍽',subtitle='Gestisci subito i tuoi piatti')">
+			th:replace="fragments/base.html :: page-title-section(image='/images/ingredienti.webp',type='has-text-white',title='Modifica i piatti',subtitle='Scegli quale piatto modificare')">
 		</div>
-		<!--- MAIN -->
 		<div class="ct-flex-container">
 			<div class="ct-flex-item">
 				<div class="section p-5">
 					<h2 class="title is-5">Modifica i piatti presenti</h2>
 					<p class="subtitle is-6">Scopri tutti i piatti proposti</p>
 				</div>
-				<div class="section p-5">
-					<a class="media media-chef" th:href="@{'/admin/dishes/dish/' + ${piatto.id} + '/update'}" th:if="${!piatti.empty}" th:each="piatto : ${piatti}">
+				<div class="section pt-0 pb-5 pl-5 pr-5">
+					<a class="media media-chef" th:href="@{'/admin/dishes/dish/' + ${piatto.id} + '/update'}"
+						th:if="${!piatti.empty}" th:each="piatto : ${piatti}">
 						<div class="media-left">
 							<div class="media-left-badge">
 								<p th:text=" '#' + ${piatto.id}">#ID</p>
@@ -37,34 +37,6 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<footer>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-house fa-lg"></i>
-				<p>Home</p>
-			</div>
-		</div>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-fire fa-lg"></i>
-				<p>Chef</p>
-			</div>
-		</div>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-fire fa-lg"></i>
-				<p>Chef</p>
-			</div>
-		</div>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-fire fa-lg"></i>
-				<p>Chef</p>
-			</div>
-		</div>
-	</footer>
+		<footer th:replace="fragments/base.html :: footer"></footer>
 	</div>
 </body>
-
-</html>

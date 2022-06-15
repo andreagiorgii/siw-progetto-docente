@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.catering.controller.validator.PiattoValidator;
 import it.uniroma3.siw.catering.model.Buffet;
 import it.uniroma3.siw.catering.model.Chef;
 import it.uniroma3.siw.catering.model.Piatto;
@@ -31,6 +32,9 @@ public class PiattoController {
 
 	@Autowired
 	private ChefService chefService;
+
+	@Autowired
+	private PiattoValidator piattoValidator;
 
 	/* Ritorna il buffet associato e dispone nuova creazione piatto */
 	@GetMapping("/admin/buffet/dish/add")
@@ -106,9 +110,19 @@ public class PiattoController {
 	 */
 	@PostMapping("/admin/buffet/dish/add")
 	public String addPiatto(@Valid @ModelAttribute("piatto") Piatto piatto, BindingResult bindingResult, Model model) {
-		piattoService.aggiungiPiatto(piatto);
-		model.addAttribute("piatto", piatto);
-		return "adminDashboard";
+
+		this.piattoValidator.validate(piatto, bindingResult);
+		
+		if (!bindingResult.hasErrors()) {
+			piattoService.aggiungiPiatto(piatto);
+			model.addAttribute("piatto", piatto);
+			return "adminDashboard";	
+		} else {
+			List<Buffet> buffets = buffetService.findAll();
+			model.addAttribute("buffets", buffets);
+			return "piattoForm";
+		}
+
 	}
 
 }

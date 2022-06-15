@@ -23,22 +23,28 @@
 							<div class="control">
 								<label class="label">Nome</label>
 								<span><input class="input" type="text" placeholder="Nome chef"
-										th:field="*{nome}" /></span>
+										th:field="*{nome}" required /></span>
 							</div>
+							<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('nome')}"
+								th:errors="*{nome}">Errore</p>
 						</div>
 						<div class="field">
 							<div class="control">
 								<label class="label">Cognome</label>
 								<span><input class="input" type="text" placeholder="Cognome chef"
-										th:field="*{cognome}" /></span>
+										th:field="*{cognome}" required /></span>
 							</div>
+							<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('cognome')}"
+								th:errors="*{cognome}">Errore</p>
 						</div>
 						<div class="field">
 							<div class="control">
 								<label class="label">Nazionalità</label>
 								<span><input class="input" placeholder="Nazionalità" type="text"
-										th:field="*{nazionalita}" /></span>
+										th:field="*{nazionalita}" required /></span>
 							</div>
+							<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('nazionalita')}"
+								th:errors="*{nazionalita}">Errore</p>
 						</div>
 						<div class="level is-mobile">
 							<div class="level-left">

@@ -13,27 +13,22 @@ import it.uniroma3.siw.catering.model.User;
 @Component
 public class BuffetValidator implements Validator {
 
-    @Override
-    public void validate(Object o, Errors errors) {
-        Buffet buffet = (Buffet) o;
-        String nome = buffet.getNome().trim();
-        String descrizione = buffet.getDescrizione().trim();
+	@Override
+	public void validate(Object o, Errors errors) {
+		Buffet buffet = (Buffet) o;
+		String nome = buffet.getNome().trim();
+		String descrizione = buffet.getDescrizione().trim();
 
-        if (nome.isEmpty())
-            errors.rejectValue("nome", "required");
-        else if (!nome.matches("[a-zA-Z]+"))
-            errors.rejectValue("nome", "isNumber");
+		if (nome.matches(".*\\d.*"))
+			errors.rejectValue("nome", "isNumber");
 
-        if (descrizione.isEmpty())
-            errors.rejectValue("nome", "required");
-        else if (!descrizione.matches("[a-zA-Z]+"))
-            errors.rejectValue("nome", "isNumber");
-    }
+		if (descrizione.matches(".*\\d.*"))
+			errors.rejectValue("nome", "isNumber");
+	}
 
-    @Override
-    public boolean supports(Class<?> clazz) {
-        return User.class.equals(clazz);
-    }
+	@Override
+	public boolean supports(Class<?> clazz) {
+		return User.class.equals(clazz);
+	}
 
 }
-

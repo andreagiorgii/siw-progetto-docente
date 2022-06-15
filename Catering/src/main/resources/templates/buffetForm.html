@@ -23,15 +23,19 @@
 							<div class="control">
 								<label class="label">Nome</label>
 								<span><input th:field="*{nome}" placeholder="es. Buffet Romano" class="input"
-										type="text" /></span>
+										type="text" required /></span>
 							</div>
+							<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('nome')}"
+								th:errors="*{nome}">Errore</p>
 						</div>
 						<div class="field">
 							<div class="control">
 								<label class="label">Descrizione</label>
 								<span><textarea th:field="*{descrizione}" class="textarea"
-										placeholder="Inserisci la descrizione del buffet"></textarea></span>
+										placeholder="Inserisci la descrizione del buffet" required></textarea></span>
 							</div>
+							<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('descrizione')}"
+								th:errors="*{descrizione}">Errore</p>
 						</div>
 						<div class="field">
 							<div class="control">

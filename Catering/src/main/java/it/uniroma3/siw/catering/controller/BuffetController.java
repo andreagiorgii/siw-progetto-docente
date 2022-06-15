@@ -28,21 +28,25 @@ public class BuffetController {
 
 	@Autowired
 	private ChefService chefService;
-	
+
 	@Autowired
 	private BuffetValidator buffetValidator;
-
 
 	@PostMapping("/admin/buffet/add")
 	public String addBuffet(@Valid @ModelAttribute("buffet") Buffet buffet, BindingResult bindingResult, Model model) {
 
 		// validate fields
 		this.buffetValidator.validate(buffet, bindingResult);
-		
+
 		if (!bindingResult.hasErrors()) {
 			buffetService.aggiungiBuffet(buffet);
 			model.addAttribute(buffet);
 			return "adminDashboard";
+		} else {
+			List<Buffet> buffets = buffetService.findAll();
+			List<Chef> buffetChefs = chefService.findAll();
+			model.addAttribute("buffets", buffets);
+			model.addAttribute("buffetChefs", buffetChefs);
 		}
 		return "buffetForm";
 	}

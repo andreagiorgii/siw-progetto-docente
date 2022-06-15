@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.catering.controller.validator.BuffetValidator;
 import it.uniroma3.siw.catering.model.Buffet;
 import it.uniroma3.siw.catering.model.Chef;
 import it.uniroma3.siw.catering.service.BuffetService;
@@ -27,9 +28,17 @@ public class BuffetController {
 
 	@Autowired
 	private ChefService chefService;
+	
+	@Autowired
+	private BuffetValidator buffetValidator;
+
 
 	@PostMapping("/admin/buffet/add")
 	public String addBuffet(@Valid @ModelAttribute("buffet") Buffet buffet, BindingResult bindingResult, Model model) {
+
+		// validate fields
+		this.buffetValidator.validate(buffet, bindingResult);
+		
 		if (!bindingResult.hasErrors()) {
 			buffetService.aggiungiBuffet(buffet);
 			model.addAttribute(buffet);

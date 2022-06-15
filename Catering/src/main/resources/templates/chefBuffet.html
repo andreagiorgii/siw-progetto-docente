@@ -18,7 +18,7 @@
 					<h2 class="title is-5">I buffet</h2>
 					<p class="subtitle is-6">Scopri tutti i buffet proposti</p>
 				</div>
-				<div class="section p-5">
+					<div class="section pt-0 pb-5 pl-5 pr-5">
 					<a class="media media-chef" th:if="${!chefBuffets.empty}" th:each="buffet : ${chefBuffets}"
 						th:href="@{'/chef/' + ${chef.id} + '/buffet/' + ${buffet.id} + '/dishes'}"  >
 						<div class="media-left">

@@ -22,7 +22,8 @@
 						<div class="field">
 							<div class="control">
 								<label class="label">Nome</label>
-								<span><input th:field="*{nome}" placeholder="es. Buffet Romano" class="input" type="text" /></span>
+								<span><input th:field="*{nome}" placeholder="es. Buffet Romano" class="input"
+										type="text" /></span>
 							</div>
 						</div>
 						<div class="field">
@@ -74,7 +75,8 @@
 								buffet</p>
 						</div>
 						<div class="media-right">
-							<form style="display: inline;" method="post" th:action="@{'/admin/buffet/' + ${buffet.id} + '/delete'}">
+							<form style="display: inline;" method="post"
+								th:action="@{'/admin/buffet/' + ${buffet.id} + '/delete'}">
 								<p class="button is-danger is-rounded " type="submit">Elimina </p>
 							</form>
 						</div>

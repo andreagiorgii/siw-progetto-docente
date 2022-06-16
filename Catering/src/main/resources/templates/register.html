@@ -8,15 +8,13 @@
 		<header th:replace="fragments/base.html :: navbar"></header>
 		<!--- MAIN -->
 		<div
-			th:replace="fragments/base.html :: page-title-section(image='/images/servizio-catering.webp',type='has-text-white',title='Registrati ora 👋',subtitle='Inizia a usare Catering')">
+			th:replace="fragments/base.html :: page-title-section(image='/images/catering.webp',type='has-text-white',title='Registrati ora 👋',subtitle='Inizia a usare Catering')">
 		</div>
 		<div class="ct-flex-container">
 			<div class="ct-flex-auth">
 				<div class="box ct-auth-box">
 					<div class="column">
 						<form th:action="@{/register}" method="POST">
-
-
 							<div class="container has-text-left mb-5">
 								<p class="title is-4">Ciao,<br>Registrati subito!</p>
 							</div>

@@ -67,8 +67,6 @@ public class AuthenticationController {
 		this.userValidator.validate(user, userBindingResult);
 		this.credentialsValidator.validate(credentials, credentialsBindingResult);
 
-		System.out.println(userBindingResult);
-
 		// if neither of them had invalid contents, store the User and the Credentials
 		// into the DB
 		if (!userBindingResult.hasErrors() && !credentialsBindingResult.hasErrors()) {

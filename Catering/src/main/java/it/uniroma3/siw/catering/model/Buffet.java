@@ -24,8 +24,8 @@ public class Buffet {
 	@NotBlank
 	private String nome;
 
-	@Column(columnDefinition = "TEXT")
 	@NotBlank
+	@Column(columnDefinition = "TEXT")
 	private String descrizione;
 
 	@OneToMany(mappedBy = "buffet", cascade = CascadeType.REMOVE)

@@ -19,10 +19,9 @@
 					<p class="subtitle is-6" th:text="${piatto.descrizione}">piatto
 						descrizione e origine</p>
 				</div>
-				<div class="section p-5">
+				<div class="section pt-0 pb-5 pl-5 pr-5">
 					<p class="title is-5">Ingredienti</p>
-					<a class="media media-chef" th:if="${!ingredienti.empty}" th:each="ingrediente : ${ingredienti}"
-						th:href="@{'/admin/buffet' + '/' + ${piatto.id} + '/dish/add'}"  >
+					<div class="media media-chef" th:if="${!ingredienti.empty}" th:each="ingrediente : ${ingredienti}">
 						<div class="media-left">
 							<div class="media-left-badge">
 								<p th:text=" '#' + ${ingrediente.id}">#ID</p>
@@ -30,44 +29,19 @@
 						</div>
 						<div class="media-content">
 							<p class="title is-6" th:text="${ingrediente.nome}">Nome ingrediente</p>
-							<p class="subtitle is-7" th:text="${ingrediente.origine}">Origine ingrediente</p>
+							<p class="subtitle is-7 mb-2" th:text="${ingrediente.origine}">Origine ingrediente</p>
 							<p class="subtitle is-6" th:text="${ingrediente.descrizione}">Descrizione ingrediente</p>
 						</div>
-						<div class="media-right"><i class="fa-solid fa-chevron-right"></i></div>
-					</a>
+					
+					</div>
 					<div th:unless="${!ingredienti.empty}">
-						<div th:replace="fragments/base.html :: alert(text='Non ci sono ingredienti nel seguente piatto')" />
+						<div
+							th:replace="fragments/base.html :: alert(text='Non ci sono ingredienti nel seguente piatto')" />
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<footer>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-house fa-lg"></i>
-				<p>Home</p>
-			</div>
-		</div>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-fire fa-lg"></i>
-				<p>Chef</p>
-			</div>
-		</div>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-fire fa-lg"></i>
-				<p>Chef</p>
-			</div>
-		</div>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-fire fa-lg"></i>
-				<p>Chef</p>
-			</div>
-		</div>
-	</footer>
+		<footer th:replace="fragments/base.html :: footer"></footer>
 	</div>
 </body>
 

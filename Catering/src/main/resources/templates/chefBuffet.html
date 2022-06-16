@@ -9,17 +9,16 @@
 		<header th:replace="fragments/base.html :: navbar"></header>
 		<!--- MAIN -->
 		<div
-			th:replace="fragments/base.html :: page-title-section(image='/images/chefs.webp',type='has-text-white',title='Buffet ' + ${buffet.nome},subtitle=${buffet.descrizione})">
+			th:replace="fragments/base.html :: page-title-section(image='/images/chefs.webp',type='has-text-white',title= 'Buffet di ' + ${chef.nome} + ' ' + ${chef.cognome},subtitle=${chef.nazionalita})">
 		</div>
 		<!--- MAIN -->
 		<div class="ct-flex-container">
 			<div class="ct-flex-item">
 				<div class="section p-5">
-					<h2 class="title is-5" th:text="${'Chef ' + chef.nome  + ' ' + chef.cognome}">Nome chef</h2>
-					<p class="subtitle is-6 mb-0" th:text="${ 'Nazionalità ' + chef.nazionalita}">Nazionalita</p>
+					<h2 class="title is-5">I buffet</h2>
 					<p class="subtitle is-6">Scopri tutti i buffet proposti</p>
 				</div>
-				<div class="section p-5">
+					<div class="section pt-0 pb-5 pl-5 pr-5">
 					<a class="media media-chef" th:if="${!chefBuffets.empty}" th:each="buffet : ${chefBuffets}"
 						th:href="@{'/chef/' + ${chef.id} + '/buffet/' + ${buffet.id} + '/dishes'}"  >
 						<div class="media-left">
@@ -39,33 +38,7 @@
 				</div>
 			</div>
 		</div>
-	</div>
-	<footer>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-house fa-lg"></i>
-				<p>Home</p>
-			</div>
-		</div>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-fire fa-lg"></i>
-				<p>Chef</p>
-			</div>
-		</div>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-fire fa-lg"></i>
-				<p>Chef</p>
-			</div>
-		</div>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-fire fa-lg"></i>
-				<p>Chef</p>
-			</div>
-		</div>
-	</footer>
+		<footer th:replace="fragments/base.html :: footer"></footer>
 	</div>
 </body>
 

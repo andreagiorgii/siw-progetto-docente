@@ -34,7 +34,6 @@ public class BuffetService {
 	 * @param id
 	 * @return
 	 */
-	@Transactional
 	public Buffet findById(@Valid Long id) {
 		return buffetRepository.findById(id).get();
 	}
@@ -57,10 +56,9 @@ public class BuffetService {
 	 * 
 	 * @param id
 	 */
-	@Transactional
 	public void deleteBuffet(Long id) {
 		buffetRepository.deleteById(id);
-		;
+
 	}
 
 	/**

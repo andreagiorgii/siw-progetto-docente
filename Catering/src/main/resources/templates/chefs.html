@@ -9,7 +9,7 @@
 		<header th:replace="fragments/base.html :: navbar"></header>
 		<!--- MAIN -->
 		<div
-			th:replace="fragments/base.html :: page-title-section(image='/images/ingredienti.webp',type='has-text-white',title='Chef 👨🏻‍🍳',subtitle='Tutti gli chef dei catering')">
+			th:replace="fragments/base.html :: page-title-section(image='/images/chefs.webp',type='has-text-white',title='Chef 👨🏻‍🍳',subtitle='Tutti gli chef dei buffet')">
 		</div>
 		<!--- MAIN -->
 		<div class="ct-flex-container">
@@ -19,7 +19,7 @@
 					<p class="subtitle is-6">Di seguito troverai tutti gli chef, potrai scoprire i loro buffet e i loro
 						piatti.</p>
 				</div>
-				<div class="section p-5">
+			<div class="section pt-0 pb-5 pl-5 pr-5">
 					<a th:if="${!chefs.empty}" th:each="chef : ${chefs}" class="media media-chef"
 						th:href="@{'/chef' + '/' + ${chef.id} + '/buffet'}">
 						<div class="media-left">

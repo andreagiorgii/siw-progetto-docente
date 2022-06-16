@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.catering.model.Buffet;
+import it.uniroma3.siw.catering.model.Chef;
 import it.uniroma3.siw.catering.model.Ingrediente;
 import it.uniroma3.siw.catering.model.Piatto;
 import it.uniroma3.siw.catering.service.IngredienteService;
@@ -27,13 +29,6 @@ public class IngredienteController {
 	@Autowired
 	private PiattoService piattoService;
 
-	/**
-	 * Ritorna un nuovo buffet e richiede gli chefs disponibili, da associare al
-	 * buffet creato
-	 * 
-	 * @param model
-	 * @return
-	 */
 	@GetMapping("/admin/buffet/dish/ingrediente/add")
 	public String getIngrediente(Model model) {
 		List<Piatto> piatti = piattoService.getPiatti();
@@ -42,6 +37,13 @@ public class IngredienteController {
 		return "ingredienteForm";
 	}
 
+	/**
+	 * Aggiunge ingrediente
+	 * @param ingrediente
+	 * @param bindingResult
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/admin/buffet/dish/ingrediente/add")
 	public String addIngrediente(@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente,
 			BindingResult bindingResult, Model model) {
@@ -50,11 +52,17 @@ public class IngredienteController {
 			model.addAttribute("ingrediente", ingrediente);
 			return "adminDashboard";
 		}
+		List<Piatto> piatti = piattoService.getPiatti();
+		model.addAttribute("piatti", piatti);
 		return "ingredienteForm";
 	}
 
 	/**
-	 * Ritorna gli ingredienti di ogni piatto in base al piatto_id
+	 * Ritorna ingrediente di ogni piatto
+	 * @param id_buffet
+	 * @param id_piatto
+	 * @param model
+	 * @return
 	 */
 	@GetMapping("/buffet/{id_buffet}/dish/{id_piatto}/ingredienti")
 	public String getIngredienti(@PathVariable("id_buffet") Long id_buffet, @PathVariable("id_piatto") Long id_piatto,

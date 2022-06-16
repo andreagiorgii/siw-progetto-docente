@@ -1,26 +1,20 @@
 <html>
 
-<head>
-	<title>Aggiungi buffet | Catering </title>
-	<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head th:replace="fragments/base.html :: headerfiles(title='Aggiungi buffet | Catering')">
+	<title>Aggiungi | Catering </title>
 </head>
 
 <body>
 	<div id="content">
-		<header>
-			<span>Buffet</span>
-		</header>
+		<header th:replace="fragments/base.html :: navbar"></header>
 		<!--- MAIN -->
+		<div
+			th:replace="fragments/base.html :: page-title-section(image='/images/catering.webp',type='has-text-white',title='Aggiungi un nuovo buffet',subtitle='Puoi aggiungere tantissimi buffet')">
+		</div>
 		<div class="ct-flex-container">
 			<div class="ct-flex-item">
 				<div class="section p-5">
-					<h2 class="title is-5">Inserisci buffet</h2>
+					<h2 class="title is-5">Dettagli buffet</h2>
 					<p class="subtitle is-6">Stai creando un nuovo buffet</p>
 				</div>
 				<div class="section pt-0 pb-4">
@@ -28,15 +22,20 @@
 						<div class="field">
 							<div class="control">
 								<label class="label">Nome</label>
-								<span><input th:field="*{nome}" class="input" type="text" /></span>
+								<span><input th:field="*{nome}" placeholder="es. Buffet Romano" class="input"
+										type="text" required /></span>
 							</div>
+							<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('nome')}"
+								th:errors="*{nome}">Errore</p>
 						</div>
 						<div class="field">
 							<div class="control">
 								<label class="label">Descrizione</label>
 								<span><textarea th:field="*{descrizione}" class="textarea"
-										placeholder="Inserisci la descrizione del buffet"></textarea></span>
+										placeholder="Inserisci la descrizione del buffet" required></textarea></span>
 							</div>
+							<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('descrizione')}"
+								th:errors="*{descrizione}">Errore</p>
 						</div>
 						<div class="field">
 							<div class="control">
@@ -66,7 +65,7 @@
 					<h2 class="title is-5"><span class="mr-1">🍴 </span> Buffet disponibili</h2>
 					<p class="subtitle is-6">Qui puoi vedere tutti i buffet proposti</p>
 				</div>
-				<div class="section p-5">
+				<div class="section pt-0 pb-5 pr-5 pl-5">
 					<a class="media media-chef" th:if="${!buffets.empty}" th:each="buffet : ${buffets}"
 						th:href="@{'/buffet/' + ${buffet.id} + '/dishes'}">
 						<div class="media-left">
@@ -76,12 +75,13 @@
 						</div>
 						<div class="media-content">
 							<p class="title is-6" th:text="${buffet.nome}">Nome Cognome</p>
-							<p class="subtitle is-6" th:text="'Descrizione: ' + ${buffet.descrizione}">Descrizione
+							<p class="subtitle is-6" th:text="'Descrizione - ' + ${buffet.descrizione}">Descrizione
 								buffet</p>
 						</div>
 						<div class="media-right">
-							<form method="post" th:action="@{'/admin/buffet/' + ${buffet.id} + '/delete'}">
-								<button class="delete" type="submit">Elimina </button>
+							<form style="display: inline;" method="post"
+								th:action="@{'/admin/buffet/' + ${buffet.id} + '/delete'}">
+								<button class="button is-danger is-rounded " type="submit">Elimina </button>
 							</form>
 						</div>
 					</a>
@@ -90,44 +90,8 @@
 					</div>
 				</div>
 			</div>
-			<a class="ct-flex-item">
-				<div class="media p-5">
-					<div class="media-left"><span class="icon-media-left">👨🏻‍🍳</span></div>
-					<div class="media-content">
-						<h2 class="title is-5">Scopri gli altri chef</h2>
-						<p class="subtitle is-6">Puoi vedere gli chef che ci sono</p>
-					</div>
-					<div class="media-right"><button class="delete"></button></div>
-				</div>
-			</a>
 		</div>
-	</div>
-	<footer>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-house fa-lg"></i>
-				<p>Home</p>
-			</div>
-		</div>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-fire fa-lg"></i>
-				<p>Chef</p>
-			</div>
-		</div>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-fire fa-lg"></i>
-				<p>Chef</p>
-			</div>
-		</div>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-fire fa-lg"></i>
-				<p>Chef</p>
-			</div>
-		</div>
-	</footer>
+		<footer th:replace="fragments/base.html :: footer"></footer>
 	</div>
 </body>
 

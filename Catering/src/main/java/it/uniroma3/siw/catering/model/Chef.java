@@ -26,6 +26,7 @@ public class Chef {
 	@NotBlank
 	private String nazionalita;
 
+	
 	@OneToMany(mappedBy = "chef")
 	private List<Buffet> buffets = new ArrayList<>();
 

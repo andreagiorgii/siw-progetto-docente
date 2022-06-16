@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.catering.controller.validator.BuffetValidator;
 import it.uniroma3.siw.catering.model.Buffet;
 import it.uniroma3.siw.catering.model.Chef;
 import it.uniroma3.siw.catering.service.BuffetService;
@@ -28,23 +29,35 @@ public class BuffetController {
 	@Autowired
 	private ChefService chefService;
 
-	@PostMapping("/admin/buffet/add")
-	public String addBuffet(@Valid @ModelAttribute("buffet") Buffet buffet, BindingResult bindingResult, Model model) {
-		if (!bindingResult.hasErrors()) {
-			buffetService.aggiungiBuffet(buffet);
-			model.addAttribute(buffet);
-			return "index.html";
-		}
-		return "buffetForm.html";
-	}
+	@Autowired
+	private BuffetValidator buffetValidator;
 
 	/**
-	 * Ritorna un nuovo buffet e richiede gli chefs disponibili, da associare al
-	 * buffet creato
-	 * 
+	 * aggiunta del buffet con chef_id selezioanto
+	 * @param buffet
+	 * @param bindingResult
 	 * @param model
 	 * @return
 	 */
+	@PostMapping("/admin/buffet/add")
+	public String addBuffet(@Valid @ModelAttribute("buffet") Buffet buffet, BindingResult bindingResult, Model model) {
+
+		// validate fields
+		this.buffetValidator.validate(buffet, bindingResult);
+
+		if (!bindingResult.hasErrors()) {
+			buffetService.aggiungiBuffet(buffet);
+			model.addAttribute(buffet);
+			return "adminDashboard";
+		} else {
+			List<Buffet> buffets = buffetService.findAll();
+			List<Chef> buffetChefs = chefService.findAll();
+			model.addAttribute("buffets", buffets);
+			model.addAttribute("buffetChefs", buffetChefs);
+		}
+		return "buffetForm";
+	}
+
 	@GetMapping("/admin/buffet/add")
 	public String getBuffet(Model model) {
 		List<Buffet> buffets = buffetService.findAll();
@@ -55,12 +68,6 @@ public class BuffetController {
 		return "buffetForm";
 	}
 
-	/**
-	 * Ritorna tutti i buffet registrati
-	 * 
-	 * @param model
-	 * @return
-	 */
 	@GetMapping("/buffet")
 	public String getBuffets(Model model) {
 		List<Buffet> buffets = buffetService.findAll();
@@ -73,15 +80,18 @@ public class BuffetController {
 		return "buffets";
 	}
 
+	/**
+	 * Cancella buffet con {id}
+	 * @param id
+	 * @return
+	 */
 	@PostMapping("/admin/buffet/{id}/delete")
 	public String deleteBuffet(@PathVariable("id") Long id) {
 		buffetService.deleteBuffet(id);
-		return "index";
+		return "adminDashboard";
 	}
 
-	/**
-	 * Ritorna i buffet dello chef con {id}
-	 */
+	
 	@GetMapping("/chef/{id}/buffet")
 	public String getBuffets(@PathVariable("id") Long id, Model model) {
 		Chef chef = chefService.findById(id);

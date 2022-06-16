@@ -1,15 +1,6 @@
 <html>
-
-
-<head>
-	<title>Accedi | Catering </title>
-	<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head th:replace="fragments/base.html :: headerfiles(title='Registrati | Catering')">
+	<title>Registrati | Catering </title>
 </head>
 
 <body>
@@ -17,26 +8,25 @@
 		<header th:replace="fragments/base.html :: navbar"></header>
 		<!--- MAIN -->
 		<div
-			th:replace="fragments/base.html :: page-title-section(image='/images/servizio-catering.webp',type='has-text-white',title='Registrati ora 👋',subtitle='Inizia a usare Catering')">
+			th:replace="fragments/base.html :: page-title-section(image='/images/catering.webp',type='has-text-white',title='Registrati ora 👋',subtitle='Inizia a usare Catering')">
 		</div>
 		<div class="ct-flex-container">
 			<div class="ct-flex-auth">
 				<div class="box ct-auth-box">
 					<div class="column">
 						<form th:action="@{/register}" method="POST">
-							
-							
 							<div class="container has-text-left mb-5">
 								<p class="title is-4">Ciao,<br>Registrati subito!</p>
 							</div>
 							<div class="field">
 								<div class="control has-icons-left">
-									<input class="input" type="text" th:field="${user.nome}" placeholder="Nome" >
+									<input class="input" type="text" th:field="${user.nome}" placeholder="Nome">
 									<span class="icon is-small is-left">
 										<i class="fas fa-user"></i>
 									</span>
 								</div>
-								<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('user.nome')}" th:errors="${user.nome}">Errore</p>
+								<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('user.nome')}"
+									th:errors="${user.nome}">Errore</p>
 
 							</div>
 							<div class="field">
@@ -46,7 +36,8 @@
 										<i class="fas fa-user"></i>
 									</span>
 								</div>
-								<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('user.cognome')}" th:errors="${user.cognome}">Errore</p>
+								<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('user.cognome')}"
+									th:errors="${user.cognome}">Errore</p>
 							</div>
 							<div class="field">
 								<div class="control has-icons-left">
@@ -56,7 +47,9 @@
 										<i class="fas fa-user"></i>
 									</span>
 								</div>
-								<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('credentials.username')}" th:errors="${credentials.username}">Errore</p>
+								<p class="has-text-left help is-danger"
+									th:if="${#fields.hasErrors('credentials.username')}"
+									th:errors="${credentials.username}">Errore</p>
 							</div>
 							<div class="field">
 								<div class="control has-icons-left">
@@ -66,7 +59,9 @@
 										<i class="fas fa-lock"></i>
 									</span>
 								</div>
-								<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('credentials.password')}" th:errors="${credentials.password}">Errore</p>
+								<p class="has-text-left help is-danger"
+									th:if="${#fields.hasErrors('credentials.password')}"
+									th:errors="${credentials.password}">Errore</p>
 							</div>
 							<div class="field">
 								<div class="control">

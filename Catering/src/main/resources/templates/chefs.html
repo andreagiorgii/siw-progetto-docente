@@ -1,14 +1,7 @@
 <html>
 
-<head>
-	<title>Aggiungi chef | Catering </title>
-	<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head th:replace="fragments/base.html :: headerfiles(title='Chef | Catering')">
+	<title>Chef | Catering </title>
 </head>
 
 <body>
@@ -16,8 +9,9 @@
 		<header th:replace="fragments/base.html :: navbar"></header>
 		<!--- MAIN -->
 		<div
-			th:replace="fragments/base.html :: page-title-section(type='is-info',title='Scopri gli chef 👨🏻‍🍳',subtitle='Tutti i nostri chef per i catering')">
+			th:replace="fragments/base.html :: page-title-section(image='/images/chefs.webp',type='has-text-white',title='Chef 👨🏻‍🍳',subtitle='Tutti gli chef dei buffet')">
 		</div>
+		<!--- MAIN -->
 		<div class="ct-flex-container">
 			<div class="ct-flex-item">
 				<div class="section p-5">
@@ -25,7 +19,7 @@
 					<p class="subtitle is-6">Di seguito troverai tutti gli chef, potrai scoprire i loro buffet e i loro
 						piatti.</p>
 				</div>
-				<div class="section p-5">
+			<div class="section pt-0 pb-5 pl-5 pr-5">
 					<a th:if="${!chefs.empty}" th:each="chef : ${chefs}" class="media media-chef"
 						th:href="@{'/chef' + '/' + ${chef.id} + '/buffet'}">
 						<div class="media-left">

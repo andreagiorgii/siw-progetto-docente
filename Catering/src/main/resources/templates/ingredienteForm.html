@@ -1,49 +1,50 @@
 <html>
 
-<head>
-	<title>Aggiungi buffet | Catering </title>
-	<link rel="stylesheet" th:href="@{/css/style.css}" href="../static/css/style.css" type="text/css" />
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-		integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-		crossorigin="anonymous" referrerpolicy="no-referrer" />
+<head th:replace="fragments/base.html :: headerfiles(title='Aggiungi Piatto | Catering')">
+	<title>Aggiungi | Catering </title>
 </head>
 
 <body>
 	<div id="content">
-		<header>
-			<span>Buffet</span>
-		</header>
+		<header th:replace="fragments/base.html :: navbar"></header>
 		<!--- MAIN -->
+		<div
+			th:replace="fragments/base.html :: page-title-section(image='/images/ingredienti.webp',type='has-text-white',title='Aggiungi un ingrediente',subtitle='Per i tuoi piatti')">
+		</div>
 		<div class="ct-flex-container">
 			<div class="ct-flex-item">
 				<div class="section p-5">
-					<h2 class="title is-5">Inserisci ingrediente</h2>
-					<p class="subtitle is-6">Stai creando un nuovo buffet</p>
+					<h2 class="title is-5">Dettagli ingrediente</h2>
+					<p class="subtitle is-6">Stai creando un nuovo ingrediente</p>
 				</div>
 				<div class="section pt-0 pb-4">
 					<form th:action="@{/admin/buffet/dish/ingrediente/add}" method="POST" th:object="${ingrediente}">
 						<div class="field">
 							<div class="control">
 								<label class="label">Nome</label>
-								<span><input th:field="*{nome}" class="input" type="text" /></span>
+								<span><input th:field="*{nome}" placeholder="es. Carne Chianina" class="input"
+										type="text" /></span>
 							</div>
+							<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('nome')}"
+								th:errors="*{nome}">Errore</p>
 						</div>
 						<div class="field">
 							<div class="control">
 								<label class="label">Origine</label>
 								<span><input th:field="*{origine}" class="input"
-										placeholder="Inserisci la descrizione del buffet"></input></span>
+										placeholder="es. Appennino Tosco-Emiliano"></input></span>
 							</div>
+							<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('origine')}"
+								th:errors="*{origine}">Errore</p>
 						</div>
 						<div class="field">
 							<div class="control">
 								<label class="label">Descrizione</label>
 								<span><textarea th:field="*{descrizione}" class="textarea"
-										placeholder="Inserisci la descrizione del buffet"></textarea></span>
+										placeholder="Inserisci la descrizione dell'ingrediente"></textarea></span>
 							</div>
+							<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('descrizione')}"
+								th:errors="*{descrizione}">Errore</p>
 						</div>
 						<div class="field">
 							<div class="control">
@@ -68,44 +69,8 @@
 					</form>
 				</div>
 			</div>
-			<a class="ct-flex-item">
-				<div class="media p-5">
-					<div class="media-left"><span class="icon-media-left">👨🏻‍🍳</span></div>
-					<div class="media-content">
-						<h2 class="title is-5">Scopri gli altri chef</h2>
-						<p class="subtitle is-6">Puoi vedere gli chef che ci sono</p>
-					</div>
-					<div class="media-right"><button class="delete"></button></div>
-				</div>
-			</a>
 		</div>
-	</div>
-	<footer>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-house fa-lg"></i>
-				<p>Home</p>
-			</div>
-		</div>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-fire fa-lg"></i>
-				<p>Chef</p>
-			</div>
-		</div>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-fire fa-lg"></i>
-				<p>Chef</p>
-			</div>
-		</div>
-		<div class="ct-footer-btn">
-			<div class="ct-btn-icon">
-				<i class="fa-solid fa-fire fa-lg"></i>
-				<p>Chef</p>
-			</div>
-		</div>
-	</footer>
+		<footer th:replace="fragments/base.html :: footer"></footer>
 	</div>
 </body>
 

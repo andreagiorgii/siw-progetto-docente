@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import it.uniroma3.siw.catering.model.Buffet;
+import it.uniroma3.siw.catering.model.Chef;
 import it.uniroma3.siw.catering.model.Ingrediente;
 import it.uniroma3.siw.catering.model.Piatto;
 import it.uniroma3.siw.catering.service.IngredienteService;
@@ -50,6 +52,8 @@ public class IngredienteController {
 			model.addAttribute("ingrediente", ingrediente);
 			return "adminDashboard";
 		}
+		List<Piatto> piatti = piattoService.getPiatti();
+		model.addAttribute("piatti", piatti);
 		return "ingredienteForm";
 	}
 

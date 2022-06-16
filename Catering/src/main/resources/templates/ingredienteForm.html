@@ -22,8 +22,11 @@
 						<div class="field">
 							<div class="control">
 								<label class="label">Nome</label>
-								<span><input th:field="*{nome}" placeholder="es. Carne Chianina" class="input" type="text" /></span>
+								<span><input th:field="*{nome}" placeholder="es. Carne Chianina" class="input"
+										type="text" /></span>
 							</div>
+							<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('nome')}"
+								th:errors="*{nome}">Errore</p>
 						</div>
 						<div class="field">
 							<div class="control">
@@ -31,6 +34,8 @@
 								<span><input th:field="*{origine}" class="input"
 										placeholder="es. Appennino Tosco-Emiliano"></input></span>
 							</div>
+							<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('origine')}"
+								th:errors="*{origine}">Errore</p>
 						</div>
 						<div class="field">
 							<div class="control">
@@ -38,6 +43,8 @@
 								<span><textarea th:field="*{descrizione}" class="textarea"
 										placeholder="Inserisci la descrizione dell'ingrediente"></textarea></span>
 							</div>
+							<p class="has-text-left help is-danger" th:if="${#fields.hasErrors('descrizione')}"
+								th:errors="*{descrizione}">Errore</p>
 						</div>
 						<div class="field">
 							<div class="control">

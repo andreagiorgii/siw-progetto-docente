@@ -36,7 +36,10 @@ public class PiattoController {
 	@Autowired
 	private PiattoValidator piattoValidator;
 
-	/* Ritorna il buffet associato e dispone nuova creazione piatto */
+	/**
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/admin/buffet/dish/add")
 	public String getPiatto(Model model) {
 		List<Buffet> buffets = buffetService.findAll();
@@ -44,9 +47,13 @@ public class PiattoController {
 		model.addAttribute("piatto", new Piatto());
 		return "piattoForm";
 	}
-
+	
 	/**
-	 * Ritorna i piatti del buffet con {id}
+	 * Restituisce i piatti in base allo chef {id} e al buffet selezionato {id}
+	 * @param id_buffet
+	 * @param id_chef
+	 * @param model
+	 * @return
 	 */
 	@GetMapping("/chef/{id_chef}/buffet/{id_buffet}/dishes")
 	public String getPiatti(@PathVariable("id_buffet") Long id_buffet, @PathVariable("id_chef") Long id_chef,
@@ -59,11 +66,14 @@ public class PiattoController {
 		model.addAttribute("buffetDishes", buffetDishes);
 		return "buffetDish";
 	}
-
+	
+	
 	/**
-	 * Ritorna i piatti del buffet con {id}
+	 * Ritorna i piatti del buffet con {id} corrispondente
+	 * @param id_buffet
+	 * @param model
+	 * @return
 	 */
-
 	@GetMapping("/buffet/{id_buffet}/dishes")
 	public String getPiatti(@PathVariable("id_buffet") Long id_buffet, Model model) {
 		Buffet buffet = buffetService.findById(id_buffet);
@@ -75,6 +85,11 @@ public class PiattoController {
 		return "buffetDish";
 	}
 
+	/**
+	 * Pagina di aggiornamento
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/admin/dishes/update")
 	public String getPiattiUpdate(Model model) {
 		List<Piatto> piatti = piattoService.getPiatti();
@@ -83,6 +98,12 @@ public class PiattoController {
 		return "piatti";
 	}
 
+	/**
+	 * Ritorna il piatto corrente da aggiornare
+	 * @param id
+	 * @param model
+	 * @return
+	 */
 	@GetMapping("/admin/dishes/dish/{id}/update")
 	public String getPiattoToUpdate(@PathVariable("id") Long id, Model model) {
 		List<Buffet> buffets = buffetService.findAll();
@@ -91,7 +112,15 @@ public class PiattoController {
 		model.addAttribute("piatto", piatto);
 		return "piattoUpdate";
 	}
-
+	
+	
+	/**
+	 * Aggiorna il piatto corrente
+	 * @param piatto
+	 * @param bindingResult
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/admin/buffet/dish/{id}/update")
 	public String updatePiatto(@Valid @ModelAttribute("piatto") Piatto piatto, BindingResult bindingResult,
 			Model model) {

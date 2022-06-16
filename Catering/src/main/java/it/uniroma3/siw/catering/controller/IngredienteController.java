@@ -29,13 +29,6 @@ public class IngredienteController {
 	@Autowired
 	private PiattoService piattoService;
 
-	/**
-	 * Ritorna un nuovo buffet e richiede gli chefs disponibili, da associare al
-	 * buffet creato
-	 * 
-	 * @param model
-	 * @return
-	 */
 	@GetMapping("/admin/buffet/dish/ingrediente/add")
 	public String getIngrediente(Model model) {
 		List<Piatto> piatti = piattoService.getPiatti();
@@ -44,6 +37,13 @@ public class IngredienteController {
 		return "ingredienteForm";
 	}
 
+	/**
+	 * Aggiunge ingrediente
+	 * @param ingrediente
+	 * @param bindingResult
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/admin/buffet/dish/ingrediente/add")
 	public String addIngrediente(@Valid @ModelAttribute("ingrediente") Ingrediente ingrediente,
 			BindingResult bindingResult, Model model) {
@@ -58,7 +58,11 @@ public class IngredienteController {
 	}
 
 	/**
-	 * Ritorna gli ingredienti di ogni piatto in base al piatto_id
+	 * Ritorna ingrediente di ogni piatto
+	 * @param id_buffet
+	 * @param id_piatto
+	 * @param model
+	 * @return
 	 */
 	@GetMapping("/buffet/{id_buffet}/dish/{id_piatto}/ingredienti")
 	public String getIngredienti(@PathVariable("id_buffet") Long id_buffet, @PathVariable("id_piatto") Long id_piatto,

@@ -33,7 +33,6 @@ public class PiattoService {
 		piattoRepository.save(piatto);
 	}
 
-	@Transactional
 	public List<Piatto> getPiatti() {
 		List<Piatto> piatti = new ArrayList<Piatto>();
 		for (Piatto p : piattoRepository.findAll()) {

@@ -32,6 +32,13 @@ public class BuffetController {
 	@Autowired
 	private BuffetValidator buffetValidator;
 
+	/**
+	 * aggiunta del buffet con chef_id selezioanto
+	 * @param buffet
+	 * @param bindingResult
+	 * @param model
+	 * @return
+	 */
 	@PostMapping("/admin/buffet/add")
 	public String addBuffet(@Valid @ModelAttribute("buffet") Buffet buffet, BindingResult bindingResult, Model model) {
 
@@ -51,13 +58,6 @@ public class BuffetController {
 		return "buffetForm";
 	}
 
-	/**
-	 * Ritorna un nuovo buffet e richiede gli chefs disponibili, da associare al
-	 * buffet creato
-	 * 
-	 * @param model
-	 * @return
-	 */
 	@GetMapping("/admin/buffet/add")
 	public String getBuffet(Model model) {
 		List<Buffet> buffets = buffetService.findAll();
@@ -68,12 +68,6 @@ public class BuffetController {
 		return "buffetForm";
 	}
 
-	/**
-	 * Ritorna tutti i buffet registrati
-	 * 
-	 * @param model
-	 * @return
-	 */
 	@GetMapping("/buffet")
 	public String getBuffets(Model model) {
 		List<Buffet> buffets = buffetService.findAll();
@@ -86,15 +80,18 @@ public class BuffetController {
 		return "buffets";
 	}
 
+	/**
+	 * Cancella buffet con {id}
+	 * @param id
+	 * @return
+	 */
 	@PostMapping("/admin/buffet/{id}/delete")
 	public String deleteBuffet(@PathVariable("id") Long id) {
 		buffetService.deleteBuffet(id);
 		return "adminDashboard";
 	}
 
-	/**
-	 * Ritorna i buffet dello chef con {id}
-	 */
+	
 	@GetMapping("/chef/{id}/buffet")
 	public String getBuffets(@PathVariable("id") Long id, Model model) {
 		Chef chef = chefService.findById(id);
